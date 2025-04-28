@@ -814,6 +814,12 @@ body, button {
     position: absolute;
 }
 
+/* Hide Required Mods*/
+#settingsReqModsContainer {
+    display: none;
+}
+
+
 /* Create a custom checkbox. */
 .loginCheckmark {
     position: relative;
