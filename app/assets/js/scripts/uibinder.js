@@ -68,8 +68,10 @@ async function showMainUI(data){
     updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
     refreshServerStatus()
     setTimeout(() => {
-        document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
-        document.body.style.backgroundImage = `url('assets/images/backgrounds/${document.body.getAttribute('bkid')}.jpg')`
+        document.getElementById('frameBar').style.backgroundColor = 'transparent'
+        document.body.style.backgroundColor = 'rgba(32, 32, 32, 0.75)'
+        document.body.style.backdropFilter = 'blur(60px)'
+        document.body.style.webkitBackdropFilter = 'blur(60px)'
         $('#main').show()
 
         const isLoggedIn = Object.keys(ConfigManager.getAuthAccounts()).length > 0

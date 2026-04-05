@@ -66,6 +66,7 @@ body, button {
     transition: background-color 1s ease;
     /*background-color: rgba(0, 0, 0, 0.5);*/
     -webkit-user-select: none;
+    user-select: none;
 }
 
 /* Undraggable region on the top of the frame. */
@@ -78,7 +79,7 @@ body, button {
 /* Flexbox to wrap the main frame content. */
 #frameMain {
     display: flex;
-    height: 20px
+    height: 20px;
 }
 
 /* Undraggable region on the left and right of the frame. */
@@ -220,9 +221,11 @@ body, button {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.50);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 32px;
 }
 
 #welcomeContent {
@@ -273,12 +276,14 @@ body, button {
 */
 
 #welcomeImageSeal {
-    border-radius: 50%;
-    border: 2px solid #cad7e1;
-    background: rgba(1, 2, 1, 0.5);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
     height: 125px;
     width: 125px;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+    box-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     margin-bottom: 5%;
     margin-top: 10%;
 }
@@ -347,6 +352,7 @@ body, button {
 #welcomeButton:hover #welcomeSVG,
 #welcomeButton:focus #welcomeSVG {
     -webkit-filter: drop-shadow(0px 0px 2px #fff);
+    filter: drop-shadow(0px 0px 2px #fff);
 }
 #welcomeButton:active #welcomeSVG .arrowLine {
     stroke: #c7c7c7;
@@ -385,7 +391,11 @@ body, button {
     height: 100%;
     width: 100%;
     transition: filter 0.25s ease;
-    background: rgba(0, 0, 0, 0.50);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 32px;
 }
 
 /* Login cancel button styles. */
@@ -488,10 +498,10 @@ body, button {
 #loginImageSeal {
     border-radius: 50%;
     border: 2px solid #cad7e1;
-    background: rgba(1, 2, 1, 0.5);
+    background: rgba(255, 255, 255, 0.1);
     height: 125px;
     width: 125px;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+    box-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.37);
     margin-bottom: 20px;
 }
 
@@ -966,7 +976,10 @@ body, button {
     height: 100%;
     width: 100%;
     transition: filter 0.25s ease;
-    background: rgba(0, 0, 0, 0.50);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #loginOptionsContent {
@@ -992,9 +1005,11 @@ body, button {
 }
 
 .loginOptionButton {
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(126, 126, 126, 0.57);
-    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 12px;
     height: 50px;
     width: 100%;
     text-align: left;
@@ -1008,7 +1023,8 @@ body, button {
 }
 .loginOptionButton:hover,
 .loginOptionButton:focus {
-    background: rgba(54, 54, 54, 0.25);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     text-shadow: 0px 0px 20px white;
 }
 
@@ -1048,12 +1064,15 @@ body, button {
  *                                                                             *
  ******************************************************************************/
 
-/* Main settings container. */
 #settingsContainer {
     position: relative;
     height: 100%;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.50);
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 32px;
     transition: background-color 0.25s cubic-bezier(.02, .01, .47, 1);
 }
 
@@ -1228,11 +1247,12 @@ body, button {
     font-size: 12px;
 }
 
-/* Selected server content container */
 .settingsSelServContainer {
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     width: 75%;
-    border-radius: 3px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     margin: 15px 0px;
@@ -1291,7 +1311,7 @@ body, button {
 #settingsContainer input[type=text] {
     color: white;
     background: rgba(0, 0, 0, 0.25);
-    border-radius: 3px;
+    border-radius: 8px;
     border: 1px solid rgba(126, 126, 126, 0.57);
     font-family: 'Avenir Book';
     transition: 0.25s ease;
@@ -1551,9 +1571,10 @@ input:checked + .toggleSwitchSlider:before {
 /* Auth account shared styles. */
 .settingsAuthAccount {
     display: flex;
-    background: rgba(0, 0, 0, 0.25);
-    border-radius: 3px;
-    border: 1px solid rgba(126, 126, 126, 0.57);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Left hand side of an auth account element, for the skin image. */
@@ -2451,6 +2472,7 @@ input:checked + .toggleSwitchSlider:before {
     position: relative;
     transition: background 2s ease;
     overflow-y: hidden;
+    background: transparent !important;
 }
 
 /* Upper content container. */
@@ -2476,13 +2498,16 @@ input:checked + .toggleSwitchSlider:before {
     display: inline-flex;
     width: 15%;
     height: 100%;
+    background: transparent !important;
 }
 
-/* Lower content container. */
 #landingContainer > #lower {
     height: 23%;
     display: flex;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-top: none;
 }
 #landingContainer > #lower > #left {
     position: relative;
@@ -2547,7 +2572,13 @@ input:checked + .toggleSwitchSlider:before {
     height: 82vh;
     width: 100%;
     display: flex;
+    background: transparent !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 12px;
     -webkit-user-select: initial;
+    user-select: initial;
     position: relative;
 }
 
