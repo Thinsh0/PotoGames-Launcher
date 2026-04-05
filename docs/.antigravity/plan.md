@@ -1,19 +1,13 @@
-# Tasks
+# Phase 1: Diagnose Launch Failure
+- [x] Reproduce `npm start` error and capture full logs.
+- [x] Check for missing dependencies or outdated packages.
+- [x] Verify if `node_modules` is complete.
+- [x] Investigate `index.js` for startup logic errors.
 
-- [x] Rebranding to PotoGames Launcher
-    - [x] Update `package.json`
-    - [x] Update `_custom.toml`
-    - [x] Update `configmanager.js` (data directory)
-- [x] Remove Mojang Authentication
-    - [x] Remove Mojang from `loginOptions.ejs`
-    - [x] Remove Mojang from `settings.ejs`
-- [x] Add Offline Authentication
-    - [x] Implement `addOfflineAccount` in `authmanager.js`
-    - [x] Implement `addOfflineAuthAccount` in `configmanager.js`
-    - [x] Add Offline Button to `loginOptions.ejs`
-    - [x] Update `login.ejs` for username-only input
-    - [x] Update `login.js` submission logic
-- [x] Final Verification & Build
-- [x] Fix Window Corner Glitch (Square and Rounded)
-    - [x] Enable Hardware Acceleration in `index.js`
-    - [x] Set HTML transparency in `app.ejs`
+# Phase 2: Fix Launch Issue
+- [x] Address identified errors (missing symbols, path issues, etc.).
+- [x] Fix potential `@electron/remote` or `ejs-electron` configuration issues.
+
+# Phase 3: Verification
+- [ ] Run `npm start` again to confirm the launcher opens.
+- [ ] Perform visual verification.
