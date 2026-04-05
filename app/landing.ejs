@@ -4,6 +4,7 @@
         <div id="hero_avatar_container">
             <div class="avatar_glow"></div>
             <img id="hero_avatar_img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB1TzVQFfavbHTdew4fjS5stRUiKadtyw9l7fA-J5TV3U3Tz6QtJOCspOqCg5oru4L3d9PFZwcoqi1jW5XF1xOiUysRyOrM0qzinFYjGBuGNo6gP1GwlqLWv0xwWKzP-6LNExP1lhS3SiMgaO-Vs-iPAjQNP6N4KR1t1uOAd0fNk5tD52565FPWTcTc6tnItSgEWpFFeZwjvRTwFdSUueO8IyjAiApUd5-gz5hZd-yNJvh990Xe0MvJr9WnVnN9ttM-fY37wrXbNVe" alt="Hero Avatar">
+            <div id="avatarOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;"></div>
         </div>
 
         <div id="left">
@@ -41,8 +42,23 @@
                 <div id="launch_details" style="display:none;">
                     <progress id="launch_progress" value="0" max="100"></progress>
                     <span id="launch_progress_label">0%</span>
+                    <div id="launch_details_right" style="display:none;"></div>
                 </div>
-                <p id="launch_subtext" style="text-align: center; font-size: 9px; font-weight: 800; color: rgba(255,140,46,0.6); margin-top: 10px; letter-spacing: 3px;">READY TO LAUNCH</p>
+                <div id="server_selection_button_wrapper" style="text-align: center; margin-bottom: 8px;">
+                    <span id="server_selection_button" style="cursor: pointer; font-size: 11px; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 20px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.05);">
+                        <%- lang('landing.selectedServer.loading') %>
+                    </span>
+                </div>
+                <p id="launch_subtext" style="text-align: center; font-size: 9px; font-weight: 800; color: rgba(255,140,46,0.6); margin-top: 5px; letter-spacing: 3px; cursor: default;">READY TO LAUNCH</p>
+            </div>
+            <div id="newsButton" style="display:none;"></div>
+            <div id="newsContainer" style="display:none;">
+                <div id="newsContent"></div>
+                <div id="newsErrorContainer">
+                    <div id="newsErrorLoading"><span id="nELoadSpan"></span></div>
+                    <div id="newsErrorFailed"><button id="newsErrorRetry"></button></div>
+                    <div id="newsErrorNone"></div>
+                </div>
             </div>
         </div>
     </div>
