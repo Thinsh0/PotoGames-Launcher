@@ -21,6 +21,10 @@ Le launcher a été entièrement rebrandé et le système d'authentification mod
 - **Paramètres** : Ajout du stockage des comptes Offline dans `authenticationDatabase`.
 - **Dashboard** : Retrait du widget de statut des serveurs Mojang (obsolète).
 
+### 4. Correctifs Visuels (Fenêtre)
+- **Angles de Fenêtre** : Suppression de l'effet "carré derrière l'arrondi" par l'ajout de `background: transparent` sur l'élément `html`.
+- **Accélération Matérielle** : Réactivation de l'accélération GPU dans `index.js`. Cela corrige les bugs de rendu de la transparence et permet le bon fonctionnement des effets de flou (`backdrop-filter`) sur Windows.
+
 ## 🧪 Vérification
 
 - [x] **Logique d'Auth** : Validation de la création de compte sans mot de passe.

@@ -38,7 +38,7 @@ const launch_progress         = document.getElementById('launch_progress')
 const launch_progress_label   = document.getElementById('launch_progress_label')
 const launch_details_text     = document.getElementById('launch_details_text')
 const server_selection_button = document.getElementById('server_selection_button')
-const user_text               = document.getElementById('user_text')
+const user_text               = document.getElementById('player_name_footer')
 
 const loggerLanding = LoggerUtil.getLogger('Landing')
 
@@ -144,15 +144,17 @@ document.getElementById('avatarOverlay').onclick = async e => {
 // Bind selected account
 function updateSelectedAccount(authUser){
     let username = Lang.queryJS('landing.selectedAccount.noAccountSelected')
+    const heroAvatar = document.getElementById('hero_avatar_img')
+
     if(authUser != null){
         if(authUser.displayName != null){
             username = authUser.displayName
         }
-        if(authUser.uuid != null){
-            document.getElementById('avatarContainer').style.backgroundImage = `url('https://mc-heads.net/body/${authUser.uuid}/right')`
+        if(authUser.uuid != null && heroAvatar){
+            heroAvatar.src = `https://mc-heads.net/body/${authUser.uuid}/right`
         }
     }
-    user_text.innerHTML = username
+    if (user_text) user_text.innerHTML = username
 }
 updateSelectedAccount(ConfigManager.getSelectedAccount())
 

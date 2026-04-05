@@ -14,3 +14,6 @@
     - [x] Update `login.ejs` for username-only input
     - [x] Update `login.js` submission logic
 - [x] Final Verification & Build
+- [x] Fix Window Corner Glitch (Square and Rounded)
+    - [x] Enable Hardware Acceleration in `index.js`
+    - [x] Set HTML transparency in `app.ejs`
