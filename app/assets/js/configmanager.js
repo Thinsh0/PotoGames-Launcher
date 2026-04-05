@@ -7,7 +7,7 @@ const logger = LoggerUtil.getLogger('ConfigManager')
 
 const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
-const dataPath = path.join(sysRoot, '.helioslauncher')
+const dataPath = path.join(sysRoot, '.potogames-launcher')
 
 const launcherDir = require('@electron/remote').app.getPath('userData')
 
@@ -397,6 +397,26 @@ exports.addMicrosoftAuthAccount = function(uuid, accessToken, name, mcExpires, m
             refresh_token: msRefreshToken,
             expires_at: msExpires
         }
+    }
+    return config.authenticationDatabase[uuid]
+}
+
+/**
+ * Adds an authenticated offline account to the database to be stored.
+ * 
+ * @param {string} uuid The uuid of the authenticated account.
+ * @param {string} username The username of the authenticated account.
+ * 
+ * @returns {Object} The authenticated account object created by this action.
+ */
+exports.addOfflineAuthAccount = function(uuid, username) {
+    config.selectedAccount = uuid
+    config.authenticationDatabase[uuid] = {
+        type: 'offline',
+        accessToken: 'offline',
+        username: username.trim(),
+        uuid: uuid.trim(),
+        displayName: username.trim()
     }
     return config.authenticationDatabase[uuid]
 }

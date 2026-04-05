@@ -20,6 +20,7 @@ const loginForm             = document.getElementById('loginForm')
 
 // Control variables.
 let lu = false, lp = false
+let offlineMode = false
 
 
 /**
@@ -43,6 +44,32 @@ function shakeError(element){
         element.classList.remove('shake')
         void element.offsetWidth
         element.classList.add('shake')
+    }
+}
+
+/**
+ * Toggle offline mode UI.
+ */
+function loginOfflineMode(toggle){
+    offlineMode = toggle
+    if(toggle){
+        $('#loginPasswordContainer').hide()
+        $('#loginForgotPasswordContainer').hide()
+        $('#loginRegisterSpan').hide()
+        $('#loginMojangDisclaimer1').hide()
+        $('#loginMojangDisclaimer2').hide()
+        loginUsername.placeholder = Lang.queryJS('login.loginOfflinePlaceholder')
+        lp = true // Password not required.
+        validateEmail(loginUsername.value)
+    } else {
+        $('#loginPasswordContainer').show()
+        $('#loginForgotPasswordContainer').show()
+        $('#loginRegisterSpan').show()
+        $('#loginMojangDisclaimer1').show()
+        $('#loginMojangDisclaimer2').show()
+        loginUsername.placeholder = Lang.queryJS('login.loginEmailPlaceholder')
+        lp = false
+        validateEmail(loginUsername.value)
     }
 }
 
@@ -169,6 +196,7 @@ loginCancelButton.onclick = (e) => {
         loginUsername.value = ''
         loginPassword.value = ''
         loginCancelEnabled(false)
+        loginOfflineMode(false)
         if(loginViewCancelHandler != null){
             loginViewCancelHandler()
             loginViewCancelHandler = null
@@ -187,7 +215,11 @@ loginButton.addEventListener('click', () => {
     // Show loading stuff.
     loginLoading(true)
 
-    AuthManager.addMojangAccount(loginUsername.value, loginPassword.value).then((value) => {
+    const loginPromise = offlineMode ? 
+        AuthManager.addOfflineAccount(loginUsername.value) : 
+        AuthManager.addMojangAccount(loginUsername.value, loginPassword.value)
+
+    loginPromise.then((value) => {
         updateSelectedAccount(value)
         loginButton.innerHTML = loginButton.innerHTML.replace(Lang.queryJS('login.loggingIn'), Lang.queryJS('login.success'))
         $('.circle-loader').toggleClass('load-complete')
