@@ -5,13 +5,43 @@ remoteMain.initialize()
 const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron')
 const autoUpdater                       = require('electron-updater').autoUpdater
 const ejse                              = require('ejs-electron')
-const fs                                = require('fs')
+const fs                                = require('fs-extra')
 const isDev                             = require('./app/assets/js/isdev')
 const path                              = require('path')
 const semver                            = require('semver')
 const { pathToFileURL }                 = require('url')
 const { AZURE_CLIENT_ID, MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR, SHELL_OPCODE } = require('./app/assets/js/ipcconstants')
 const LangLoader                        = require('./app/assets/js/langloader')
+
+// --- Logging Setup ---
+try {
+    const logPath = path.join(app.getPath('userData'), 'launcher.log')
+    const logStream = fs.createWriteStream(logPath, { flags: 'a' })
+    const originalStdout = process.stdout.write.bind(process.stdout)
+    const originalStderr = process.stderr.write.bind(process.stderr)
+
+    const writeLog = (type, chunk) => {
+        const timestamp = new Date().toISOString()
+        let data = chunk.toString()
+        if (data.length > 2000) {
+            data = data.substring(0, 2000) + '\n... [TRUNCATED - Potential log pollution detected] ...\n'
+        }
+        logStream.write(`[${timestamp}] [${type}] ${data}`)
+    }
+
+    process.stdout.write = (chunk, encoding, callback) => {
+        writeLog('INFO', chunk)
+        return originalStdout(chunk, encoding, callback)
+    }
+    process.stderr.write = (chunk, encoding, callback) => {
+        writeLog('ERROR', chunk)
+        return originalStderr(chunk, encoding, callback)
+    }
+    console.log('--- Starting Launcher Session ---')
+} catch (e) {
+    console.error('Failed to initialize file logging:', e)
+}
+// ---------------------
 
 // Setup Lang
 LangLoader.setupLanguage()
@@ -105,7 +135,7 @@ ipcMain.handle(SHELL_OPCODE.TRASH_ITEM, async (event, ...args) => {
 })
 
 // Enable hardware acceleration for glassmorphism effects (backdrop-filter) and transparency.
-// app.disableHardwareAcceleration()
+app.disableHardwareAcceleration()
 
 
 const REDIRECT_URI_PREFIX = 'https://login.microsoftonline.com/common/oauth2/nativeclient?'
@@ -129,7 +159,7 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
         width: 520,
         height: 600,
         frame: true,
-        icon: getPlatformIcon('SealCircle')
+        icon: getPlatformIcon('logo_small')
     })
 
     msftAuthWindow.on('closed', () => {
@@ -180,7 +210,7 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGOUT, (ipcEvent, uuid, isLastAccount) => {
         width: 520,
         height: 600,
         frame: true,
-        icon: getPlatformIcon('SealCircle')
+        icon: getPlatformIcon('logo_small')
     })
 
     msftLogoutWindow.on('closed', () => {
@@ -226,15 +256,18 @@ function createWindow() {
     win = new BrowserWindow({
         width: 980,
         height: 552,
-        icon: getPlatformIcon('SealCircle'),
+        icon: getPlatformIcon('logo_small'),
         frame: false,
         transparent: true,
+        backgroundColor: '#00000000',
+        hasShadow: false,
+        thickFrame: false,
+        roundedCorners: false,
         webPreferences: {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
             contextIsolation: false
-        },
-        backgroundColor: '#00000000'
+        }
     })
     remoteMain.enable(win.webContents)
 
@@ -325,15 +358,19 @@ function createMenu() {
 
 function getPlatformIcon(filename){
     let ext
-    switch(process.platform) {
-        case 'win32':
-            ext = 'ico'
-            break
-        case 'darwin':
-        case 'linux':
-        default:
-            ext = 'png'
-            break
+    if (filename === 'logo_small' || filename === 'logo') {
+        ext = 'png'
+    } else {
+        switch(process.platform) {
+            case 'win32':
+                ext = 'ico'
+                break
+            case 'darwin':
+            case 'linux':
+            default:
+                ext = 'png'
+                break
+        }
     }
 
     return path.join(__dirname, 'app', 'assets', 'images', `${filename}.${ext}`)

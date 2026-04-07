@@ -2,12 +2,12 @@
   "name": "potogames-launcher",
   "version": "2.2.1",
   "productName": "PotoGames Launcher",
-  "description": "Custom Minecraft launcher for PotoGames.",
-  "author": "Daniel Scalzi (https://github.com/dscalzi/)",
+  "description": "The official Minecraft launcher for PotoGames players.",
+  "author": "PotoGames (https://github.com/PotoGames/)",
   "license": "UNLICENSED",
-  "homepage": "https://github.com/PotoGames/PotoGames-Launcher",
+  "homepage": "https://github.com/Thinsh0/PotoGames-Launcher",
   "bugs": {
-    "url": "https://github.com/PotoGames/PotoGames-Launcher/issues"
+    "url": "https://github.com/Thinsh0/PotoGames-Launcher/issues"
   },
   "private": true,
   "main": "index.js",
@@ -17,7 +17,8 @@
     "dist:win": "npm run dist -- -w",
     "dist:mac": "npm run dist -- -m",
     "dist:linux": "npm run dist -- -l",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "patch-package"
   },
   "engines": {
     "node": "22.x.x"
@@ -43,10 +44,11 @@
     "@stylistic/eslint-plugin": "^5.6.1",
     "electron": "^39.2.7",
     "electron-builder": "^26.4.0",
-    "eslint": "^9.39.2"
+    "eslint": "^9.39.2",
+    "patch-package": "^8.0.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PotoGames/PotoGames-Launcher.git"
+    "url": "git+https://github.com/Thinsh0/PotoGames-Launcher.git"
   }
 }

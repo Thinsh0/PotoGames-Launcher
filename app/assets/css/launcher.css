@@ -28,12 +28,15 @@
  *                                                                             *
  ******************************************************************************/
 
-body, html, div {
+body,
+html,
+div {
     margin: 0px;
     padding: 0px;
 }
 
-body, button {
+body,
+button {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     color: white;
 }
@@ -47,8 +50,10 @@ body {
 body::before {
     content: '';
     position: absolute;
-    top: 25%; left: -10%; 
-    width: 40vw; height: 40vw;
+    top: 25%;
+    left: -10%;
+    width: 40vw;
+    height: 40vw;
     background: radial-gradient(circle, rgba(255, 140, 46, 0.08) 0%, transparent 70%);
     filter: blur(100px);
     pointer-events: none;
@@ -58,8 +63,10 @@ body::before {
 body::after {
     content: '';
     position: absolute;
-    bottom: 25%; right: -10%;
-    width: 40vw; height: 40vw;
+    bottom: 25%;
+    right: -10%;
+    width: 40vw;
+    height: 40vw;
     background: radial-gradient(circle, rgba(145, 184, 73, 0.08) 0%, transparent 70%);
     filter: blur(100px);
     pointer-events: none;
@@ -95,6 +102,9 @@ body::after {
     /*background-color: rgba(0, 0, 0, 0.5);*/
     -webkit-user-select: none;
     user-select: none;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    overflow: hidden;
 }
 
 /* Undraggable region on the top of the frame. */
@@ -137,6 +147,7 @@ body::after {
 #frameTitleDock {
     padding: 0px 10px;
 }
+
 #frameTitleText {
     font-size: 14px;
     font-family: 'Avenir Medium';
@@ -151,7 +162,8 @@ body::after {
     right: -2px;
     height: 22px;
 }
-#frameButtonDockWin > .frameButton:not(:first-child) {
+
+#frameButtonDockWin>.frameButton:not(:first-child) {
     margin-left: -4px;
 }
 
@@ -171,22 +183,29 @@ body::after {
     width: 39px;
     cursor: pointer;
 }
+
 .frameButton:hover,
 .frameButton:focus {
     background: rgba(189, 189, 189, 0.43);
 }
+
 .frameButton:active {
     background: rgba(156, 156, 156, 0.43);
 }
+
 .frameButton:focus {
     outline: 0px;
 }
 
 /* Close button is red. */
+#frameButton_close {
+    border-top-right-radius: 14px;
+}
 #frameButton_close:hover,
 #frameButton_close:focus {
     background: rgba(255, 53, 53, 0.61) !important;
 }
+
 #frameButton_close:active {
     background: rgba(235, 0, 0, 0.61) !important;
 }
@@ -201,6 +220,7 @@ body::after {
     -webkit-app-region: no-drag !important;
     cursor: pointer;
 }
+
 .frameButtonDarwin:focus {
     outline: 0px;
 }
@@ -208,10 +228,12 @@ body::after {
 #frameButtonDarwin_close {
     background-color: #e74c32;
 }
+
 #frameButtonDarwin_close:hover,
 #frameButtonDarwin_close:focus {
     background-color: #FF9A8A;
 }
+
 #frameButtonDarwin_close:active {
     background-color: #ff8d7b;
 }
@@ -219,10 +241,12 @@ body::after {
 #frameButtonDarwin_minimize {
     background-color: #fed045;
 }
+
 #frameButtonDarwin_minimize:hover,
 #frameButtonDarwin_minimize:focus {
     background-color: #FFE9A9;
 }
+
 #frameButtonDarwin_minimize:active {
     background-color: #ffde7b;
 }
@@ -230,10 +254,12 @@ body::after {
 #frameButtonDarwin_restoredown {
     background-color: #96e734;
 }
+
 #frameButtonDarwin_restoredown:hover,
 #frameButtonDarwin_restoredown:focus {
     background-color: #D6FFA6;
 }
+
 #frameButtonDarwin_restoredown:active {
     background-color: #bfff76;
 }
@@ -355,19 +381,23 @@ body::after {
     margin-top: 5%;
     margin-bottom: -5%;
 }
+
 #welcomeButton:disabled {
     color: rgba(255, 255, 255, 0.75);
     pointer-events: none;
 }
+
 #welcomeButton:hover,
 #welcomeButton:focus {
     text-shadow: 0px 0px 20px #fff;
     outline: none;
 }
+
 #welcomeButton:active {
     color: #c7c7c7;
     text-shadow: 0px 0px 20px #c7c7c7;
 }
+
 #welcomeSVG {
     -webkit-transform: translate3d(0, 0, 0);
     overflow: visible;
@@ -377,17 +407,21 @@ body::after {
     width: 20px;
     height: 20px;
 }
+
 #welcomeButton:hover #welcomeSVG,
 #welcomeButton:focus #welcomeSVG {
     -webkit-filter: drop-shadow(0px 0px 2px #fff);
     filter: drop-shadow(0px 0px 2px #fff);
 }
+
 #welcomeButton:active #welcomeSVG .arrowLine {
     stroke: #c7c7c7;
 }
+
 #welcomeButton:active #welcomeSVG {
     -webkit-filter: drop-shadow(0px 0px 2px #c7c7c7);
 }
+
 #welcomeButton:disabled #welcomeSVG .arrowLine {
     stroke: rgba(255, 255, 255, 0.75);
 }
@@ -441,28 +475,34 @@ body::after {
     cursor: pointer;
     transition: 0.25s ease;
 }
+
 #loginCancelButton:hover #loginCancelIcon,
 #loginCancelButton:hover #loginCancelText,
 #loginCancelButton:focus #loginCancelIcon,
 #loginCancelButton:focus #loginCancelText {
     text-shadow: 0px 0px 20px white;
 }
+
 #loginCancelButton:hover #loginCancelIcon,
 #loginCancelButton:focus #loginCancelIcon {
     box-shadow: 0px 0px 20px white;
 }
+
 #loginCancelButton:active #loginCancelIcon,
 #loginCancelButton:active #loginCancelText {
     text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
     color: rgba(255, 255, 255, 0.75);
     border-color: rgba(255, 255, 255, 0.75);
 }
+
 #loginCancelButton:active #loginCancelIcon {
     box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
 }
+
 #loginCancelButton:disabled {
     pointer-events: none;
 }
+
 #loginCancelButton:disabled #loginCancelIcon,
 #loginCancelButton:disabled #loginCancelText {
     color: rgba(255, 255, 255, 0.75);
@@ -482,6 +522,7 @@ body::after {
     margin-bottom: 5px;
     transition: 0.25s ease;
 }
+
 /* Text for the login cancel button. */
 #loginCancelText {
     font-size: 15px;
@@ -513,11 +554,13 @@ body::after {
     text-decoration: none;
     transition: 0.25s ease;
 }
+
 #loginForm a:hover,
 #loginForm a:focus {
     color: #a2a2a2;
     outline: none;
 }
+
 #loginForm a:active {
     color: #8b8b8b;
 }
@@ -573,23 +616,29 @@ body::after {
 }
 
 .shake {
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
 }
 
 @keyframes shake {
-    10%, 90% {
+
+    10%,
+    90% {
         transform: translate3d(-1px, 0, 0);
     }
-    
-    20%, 80% {
+
+    20%,
+    80% {
         transform: translate3d(2px, 0, 0);
     }
-  
-    30%, 50%, 70% {
+
+    30%,
+    50%,
+    70% {
         transform: translate3d(-4px, 0, 0);
     }
-  
-    40%, 60% {
+
+    40%,
+    60% {
         transform: translate3d(4px, 0, 0);
     }
 }
@@ -611,12 +660,15 @@ body::after {
     font-size: 10px;
     letter-spacing: 1px;
 }
+
 .loginField:focus {
     outline: none;
 }
+
 .loginField:disabled {
     color: rgba(255, 255, 255, 0.50);
 }
+
 .loginField::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.75);
     font-size: 10px;
@@ -624,6 +676,7 @@ body::after {
     text-align: center;
     font-weight: bold;
 }
+
 .loginField:focus::-webkit-input-placeholder {
     color: transparent;
 }
@@ -659,22 +712,27 @@ body::after {
     right: -20px;
     transition: 0.5s ease;
 }
+
 #loginButton:disabled {
     color: rgba(255, 255, 255, 0.75);
     pointer-events: none;
 }
+
 #loginButton[loading] {
     color: #fff;
 }
+
 #loginButton:hover,
 #loginButton:focus {
     text-shadow: 0px 0px 20px #fff;
     outline: none;
 }
+
 #loginButton:active {
     color: #c7c7c7;
-    text-shadow:  0px 0px 20px #c7c7c7;
+    text-shadow: 0px 0px 20px #c7c7c7;
 }
+
 #loginSVG {
     -webkit-transform: translate3d(0, 0, 0);
     overflow: visible;
@@ -684,16 +742,20 @@ body::after {
     width: 20px;
     height: 20px;
 }
+
 #loginButton:hover #loginSVG,
 #loginButton:focus #loginSVG {
     -webkit-filter: drop-shadow(0px 0px 2px #fff);
 }
+
 #loginButton:active #loginSVG .arrowLine {
     stroke: #c7c7c7;
 }
+
 #loginButton:active #loginSVG {
     -webkit-filter: drop-shadow(0px 0px 2px #c7c7c7);
 }
+
 #loginButton:disabled #loginSVG .arrowLine {
     stroke: rgba(255, 255, 255, 0.75);
 }
@@ -707,6 +769,7 @@ body::after {
 #loginButton[loading] #loginSVG {
     display: none;
 }
+
 #loginButton[loading] .circle-loader,
 #loginButton #loginSVG {
     display: initial;
@@ -728,20 +791,24 @@ body::after {
     width: 16px;
     height: 16px;
 }
+
 .load-complete {
     animation: none;
     border-color: #ffffff;
     transition: border 500ms ease-out;
 }
+
 .checkmark {
     display: none;
 }
+
 .checkmark.draw:after {
     animation-duration: 800ms;
     animation-timing-function: ease;
     animation-name: checkmark;
     transform: scaleX(-1) rotate(135deg);
 }
+
 .checkmark:after {
     opacity: 1;
     height: 8px;
@@ -754,30 +821,36 @@ body::after {
     top: 8px;
     position: absolute;
 }
+
 @keyframes loader-spin {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
 }
+
 @keyframes checkmark {
     0% {
         height: 0;
         width: 0;
         opacity: 1;
     }
+
     20% {
         height: 0;
         width: 4px;
         opacity: 1;
     }
+
     40% {
         height: 8px;
         width: 4px;
         opacity: 1;
     }
+
     100% {
         height: 8px;
         width: 4px;
@@ -862,30 +935,36 @@ body::after {
     background: none;
     transition: 0.25s ease;
 }
+
 /* On hover and focus, add a grey border color. */
-#checkmarkContainer:hover input ~ *,
-#checkmarkContainer input:focus ~ * {
+#checkmarkContainer:hover input~*,
+#checkmarkContainer input:focus~* {
     color: #a2a2a2;
     border-color: #a2a2a2;
 }
+
 /* On keydown, darken the checkbox a bit. */
-#checkmarkContainer input:active ~ *:not(#loginRememberText) {
+#checkmarkContainer input:active~*:not(#loginRememberText) {
     color: #8d8d8d;
     border-color: #8d8d8d;
 }
+
 #checkmarkContainer[disabled] {
     pointer-events: none;
 }
+
 /* For checked -> #checkmarkContainer input:checked ~ * */
 /* Create the checkmark/indicator (hidden when not checked). */
 .loginCheckmark:after {
     content: "";
     display: none;
 }
+
 /* Show the checkmark when checked. */
-#checkmarkContainer input:checked ~ .loginCheckmark:after {
+#checkmarkContainer input:checked~.loginCheckmark:after {
     display: block;
 }
+
 /* Style the checkmark/indicator. */
 #checkmarkContainer .loginCheckmark:after {
     position: absolute;
@@ -942,10 +1021,12 @@ body::after {
     transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
     animation: 750ms rotateBefore infinite linear reverse;
 }
+
 .waitingSpinner:after {
     transform: rotateX(240deg) rotateY(45deg) rotateZ(45deg);
     animation: 750ms rotateAfter infinite linear;
 }
+
 .waitingSpinner:before,
 .waitingSpinner:after {
     box-sizing: border-box;
@@ -974,19 +1055,21 @@ body::after {
 
 @keyframes rotateBefore {
     from {
-      transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
+        transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
     }
+
     to {
-      transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
+        transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
     }
 }
 
 @keyframes rotateAfter {
     from {
-      transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
+        transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
     }
+
     to {
-      transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
+        transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
     }
 }
 
@@ -1049,6 +1132,7 @@ body::after {
     align-items: center;
     column-gap: 5px;
 }
+
 .loginOptionButton:hover,
 .loginOptionButton:focus {
     background: rgba(255, 255, 255, 0.15);
@@ -1072,14 +1156,17 @@ body::after {
     outline: none;
     transition: 0.25s ease;
 }
+
 #loginOptionCancelButton:hover,
 #loginOptionCancelButton:focus {
     text-shadow: 0px 0px 20px lightgrey;
 }
+
 #loginOptionCancelButton:active {
     text-shadow: 0px 0px 20px rgba(211, 211, 211, 0.75);
     color: rgba(211, 211, 211, 0.75);
 }
+
 #loginOptionCancelButton:disabled {
     color: rgba(211, 211, 211, 0.75);
     pointer-events: none;
@@ -1114,6 +1201,7 @@ body::after {
     opacity: 0;
     transition: opacity 0.25s ease;
 }
+
 #settingsContainer[scrolled]:before {
     opacity: 1;
 }
@@ -1139,6 +1227,7 @@ body::after {
     display: flex;
     justify-content: center;
 }
+
 #settingsNavHeaderText {
     font-size: 20px;
 }
@@ -1171,11 +1260,13 @@ body::after {
     outline: none;
     transition: 0.25s ease;
 }
+
 .settingsNavItem:hover,
 .settingsNavItem:focus {
     color: #c1c1c1;
     text-shadow: 0px 0px 20px #c1c1c1;
 }
+
 .settingsNavItem[selected] {
     cursor: default;
     color: white;
@@ -1190,7 +1281,7 @@ body::after {
 /* Content container for the done button. */
 #settingsNavContentBottom {
     position: absolute;
-    top: 65%;
+    top: 50%;
 }
 
 /* Settings navigational divider. */
@@ -1214,14 +1305,17 @@ body::after {
     outline: none;
     transition: 0.25s ease;
 }
+
 #settingsNavDone:hover,
 #settingsNavDone:focus {
     text-shadow: 0px 0px 20px white, 0px 0px 20px white, 0px 0px 20px white;
 }
+
 #settingsNavDone:active {
     text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75), 0px 0px 20px rgba(255, 255, 255, 0.75), 0px 0px 20px rgba(255, 255, 255, 0.75);
     color: rgba(255, 255, 255, 0.75);
 }
+
 #settingsNavDone:disabled {
     color: rgba(255, 255, 255, 0.75);
     pointer-events: none;
@@ -1240,24 +1334,27 @@ body::after {
     height: 100%;
     overflow-y: auto;
 }
+
 .settingsTab::-webkit-scrollbar {
     width: 2px;
 }
+
 .settingsTab::-webkit-scrollbar-track {
     display: none;
 }
+
 .settingsTab::-webkit-scrollbar-thumb {
     border-radius: 10px;
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.50);
 }
 
 /* Add spacing to the top of each settings tab. */
-.settingsTab > *:first-child {
+.settingsTab>*:first-child {
     margin-top: 5%;
 }
 
 /* Add spacing to the bottom of each settings tab. */
-.settingsTab > *:last-child {
+.settingsTab>*:last-child {
     margin-bottom: 20%;
 }
 
@@ -1267,10 +1364,12 @@ body::after {
     flex-direction: column;
     margin-bottom: 20px;
 }
+
 .settingsTabHeaderText {
     font-size: 20px;
     font-family: 'Avenir Medium';
 }
+
 .settingsTabHeaderDesc {
     font-size: 12px;
 }
@@ -1314,17 +1413,20 @@ body::after {
     cursor: pointer;
     outline: none;
 }
+
 .settingsSwitchServerButton:hover,
 .settingsSwitchServerButton:focus {
     box-shadow: 0px 0px 20px rgb(255, 255, 255);
     background: rgba(255, 255, 255, 0.25);
 }
+
 .settingsSwitchServerButton:active {
     box-shadow: 0px 0px 20px rgb(187, 187, 187);
     background: rgba(187, 187, 187, 0.25);
     border: 1px solid rgb(187, 187, 187);
     color: rgb(187, 187, 187);
 }
+
 .settingsSelServContainer:hover .settingsSwitchServerButton {
     opacity: 1;
 }
@@ -1344,11 +1446,13 @@ body::after {
     font-family: 'Avenir Book';
     transition: 0.25s ease;
 }
+
 #settingsContainer input[type=number]:focus,
 #settingsContainer input[type=text]:focus {
     outline: none;
     border-color: rgba(126, 126, 126, 0.87);
 }
+
 #settingsContainer input[type=number][error] {
     border-color: rgb(255, 27, 12);
     background: rgba(236, 0, 0, 0.25);
@@ -1364,20 +1468,24 @@ body::after {
     width: 75%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.50);
 }
+
 .settingsFieldLeft {
     display: flex;
     flex-direction: column;
 }
+
 .settingsFieldTitle {
     font-size: 14px;
     font-family: 'Avenir Medium';
     color: rgba(255, 255, 255, 0.95);
 }
+
 .settingsFieldDesc {
     font-size: 12px;
     color: rgba(255, 255, 255, .95);
     margin-top: 5px;
 }
+
 .settingsDivider {
     height: 1px;
     width: 75%;
@@ -1393,9 +1501,11 @@ body::after {
     border-radius: 50px;
     box-sizing: border-box;
 }
+
 .toggleSwitch input {
-    display:none;
+    display: none;
 }
+
 .toggleSwitchSlider {
     position: absolute;
     cursor: pointer;
@@ -1408,6 +1518,7 @@ body::after {
     border-radius: 50px;
     border: 1px solid rgba(126, 126, 126, 0.57);
 }
+
 .toggleSwitchSlider:before {
     position: absolute;
     content: "";
@@ -1420,12 +1531,14 @@ body::after {
     border-radius: 50px;
     transition: .4s;
 }
-input:checked + .toggleSwitchSlider {
+
+input:checked+.toggleSwitchSlider {
     background-color: rgb(31, 140, 11);
     /* box-shadow: inset 2px 1px 20px black; */
     border: 1px solid rgb(31, 140, 11);
 }
-input:checked + .toggleSwitchSlider:before {
+
+input:checked+.toggleSwitchSlider:before {
     transform: translateX(15px);
 }
 
@@ -1438,6 +1551,7 @@ input:checked + .toggleSwitchSlider:before {
     border-radius: 3px;
     position: relative;
 }
+
 .rangeSliderBar {
     position: absolute;
     background: #8be88b;
@@ -1446,6 +1560,7 @@ input:checked + .toggleSwitchSlider:before {
     border-radius: 3px 0px 0px 3px;
     transition: background 0.25s ease;
 }
+
 .rangeSliderTrack {
     position: absolute;
     top: -7.5px;
@@ -1489,6 +1604,7 @@ input:checked + .toggleSwitchSlider:before {
     padding: 5px;
     transition: 0.25s ease;
 }
+
 .settingsFileSelSVG {
     width: 20px;
     height: 20px;
@@ -1516,10 +1632,12 @@ input:checked + .toggleSwitchSlider:before {
     white-space: nowrap;
     outline: none;
 }
+
 .settingsFileSelButton:hover,
 .settingsFileSelButton:focus {
     text-shadow: 0px 0px 20px white;
 }
+
 .settingsFileSelButton:active {
     text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
     color: rgba(255, 255, 255, 0.75);
@@ -1532,6 +1650,7 @@ input:checked + .toggleSwitchSlider:before {
     color: lightgrey;
     width: 89%;
 }
+
 .settingsFileSelDesc strong {
     font-family: 'Avenir Medium';
 }
@@ -1572,14 +1691,17 @@ input:checked + .toggleSwitchSlider:before {
     outline: none;
     transition: 0.25s ease;
 }
+
 .settingsAddAuthAccount:hover,
 .settingsAddAuthAccount:focus {
     text-shadow: 0px 0px 20px white, 0px 0px 20px white, 0px 0px 20px white;
 }
+
 .settingsAddAuthAccount:active {
     text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75), 0px 0px 20px rgba(255, 255, 255, 0.75), 0px 0px 20px rgba(255, 255, 255, 0.75);
     color: rgba(255, 255, 255, 0.75);
 }
+
 .settingsAddAuthAccount:disabled {
     color: rgba(255, 255, 255, 0.75);
     pointer-events: none;
@@ -1589,10 +1711,12 @@ input:checked + .toggleSwitchSlider:before {
 .settingsCurrentAccounts {
     margin-bottom: 5%;
 }
-.settingsCurrentAccounts > .settingsAuthAccount:not(:last-child) {
+
+.settingsCurrentAccounts>.settingsAuthAccount:not(:last-child) {
     margin-bottom: 10px;
 }
-.settingsCurrentAccounts > .settingsAuthAccount:not(:first-child) {
+
+.settingsCurrentAccounts>.settingsAuthAccount:not(:first-child) {
     margin-top: 10px;
 }
 
@@ -1629,7 +1753,8 @@ input:checked + .toggleSwitchSlider:before {
     margin-left: 20px;
     width: 100%;
 }
-.settingsAuthAccountDetails > *:not(:last-child) {
+
+.settingsAuthAccountDetails>*:not(:last-child) {
     margin-bottom: 20px;
 }
 
@@ -1638,12 +1763,14 @@ input:checked + .toggleSwitchSlider:before {
     display: flex;
     flex-direction: column;
 }
+
 .settingsAuthAccountDetailTitle {
     font-size: 12px;
     color: grey;
     font-weight: bold;
     font-family: 'Avenir Medium';
 }
+
 .settingsAuthAccountDetailValue {
     font-size: 14px;
     -webkit-user-select: initial;
@@ -1668,15 +1795,18 @@ input:checked + .toggleSwitchSlider:before {
     outline: none;
     transition: 0.25s ease;
 }
+
 .settingsAuthAccountSelect:hover:not([selected]),
 .settingsAuthAccountSelect:focus:not([selected]) {
     text-shadow: 0px 0px 20px white, 0px 0px 20px white;
     cursor: pointer;
 }
+
 .settingsAuthAccount:hover .settingsAuthAccountSelect:not([selected]),
 .settingsAuthAccountSelect[selected] {
     opacity: 1;
 }
+
 .settingsAuthAccountSelect[selected] {
     pointer-events: none;
 }
@@ -1694,17 +1824,20 @@ input:checked + .toggleSwitchSlider:before {
     cursor: pointer;
     outline: none;
 }
+
 .settingsAuthAccountLogOut:hover,
 .settingsAuthAccountLogOut:focus {
     box-shadow: 0px 0px 20px rgb(241, 55, 55);
     background: rgba(241, 55, 55, 0.25);
 }
+
 .settingsAuthAccountLogOut:active {
     box-shadow: 0px 0px 20px rgb(185, 47, 47);
     background: rgba(185, 47, 47, 0.25);
     border: 1px solid rgb(185, 47, 47);
     color: rgb(185, 47, 47);
 }
+
 .settingsAuthAccount:hover .settingsAuthAccountLogOut {
     opacity: 1;
 }
@@ -1721,15 +1854,18 @@ input:checked + .toggleSwitchSlider:before {
     border-bottom: 1px solid rgba(255, 255, 255, 0.50);
     width: 75%;
 }
+
 #settingsGameResolutionContent {
     display: flex;
     align-items: center;
     padding-top: 10px;
 }
+
 #settingsGameResolutionCross {
     color: grey;
     padding: 0px 15px;
 }
+
 #settingsGameWidth,
 #settingsGameHeight {
     padding: 7.5px 5px;
@@ -1774,6 +1910,7 @@ input:checked + .toggleSwitchSlider:before {
 .settingsDropinMod {
     padding: 10px;
 }
+
 .settingsSubMod {
     padding: 10px 0px 10px 15px;
     margin-left: 20px;
@@ -1823,23 +1960,25 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Set the status color of an enabled mod. */
-.settingsBaseMod[enabled] > .settingsModContent > .settingsModMainWrapper > .settingsModStatus {
+.settingsBaseMod[enabled]>.settingsModContent>.settingsModMainWrapper>.settingsModStatus {
     background-color: rgb(165, 195, 37);
 }
 
 /* Add opacity to submods of a disabled mod. */
-.settingsBaseMod:not([enabled]) > .settingsSubModContainer .settingsModContent {
+.settingsBaseMod:not([enabled])>.settingsSubModContainer .settingsModContent {
     opacity: 0.5;
 }
 
 /* Curve the left border for submods. */
-.settingsSubModContainer > .settingsSubMod:first-child {
+.settingsSubModContainer>.settingsSubMod:first-child {
     border-top-left-radius: 10px;
 }
-.settingsSubModContainer > .settingsSubMod:last-child {
+
+.settingsSubModContainer>.settingsSubMod:last-child {
     border-bottom-left-radius: 10px;
 }
-.settingsSubModContainer > .settingsSubMod:only-child {
+
+.settingsSubModContainer>.settingsSubMod:only-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
@@ -1863,12 +2002,14 @@ input:checked + .toggleSwitchSlider:before {
     transition: 0.25s ease;
     margin-bottom: 10px;
 }
+
 #settingsDropinFileSystemButton:hover,
 #settingsDropinFileSystemButton:focus,
 #settingsDropinFileSystemButton[drag] {
     background: rgba(54, 54, 54, 0.25);
     text-shadow: 0px 0px 20px white;
 }
+
 /* Refresh instructions on the file system button. */
 #settingsDropinRefreshNote {
     font-size: 10px;
@@ -1888,10 +2029,12 @@ input:checked + .toggleSwitchSlider:before {
     outline: none;
     transition: 0.25s ease;
 }
+
 .settingsDropinRemoveButton:hover,
 .settingsDropinRemoveButton:focus {
     text-shadow: 0px 0px 20px #c32625, 0px 0px 20px #c32625, 0px 0px 20px #c32625;
 }
+
 .settingsDropinRemoveButton:active {
     color: #9b1f1f;
     text-shadow: 0px 0px 20px #9b1f1f, 0px 0px 20px #9b1f1f, 0px 0px 20px #9b1f1f;
@@ -1923,6 +2066,7 @@ input:checked + .toggleSwitchSlider:before {
     padding: 6px 11px;
     margin-right: 5px;
 }
+
 #settingsShaderpackButton:hover,
 #settingsShaderpackButton:focus,
 #settingsShaderpackButton[drag] {
@@ -1961,6 +2105,7 @@ input:checked + .toggleSwitchSlider:before {
     border-color: transparent transparent rgba(126, 126, 126, 0.57) transparent;
     top: 7px;
 }
+
 .settingsSelectSelected.select-arrow-active {
     border-radius: 3px 3px 0px 0px;
 }
@@ -1978,16 +2123,20 @@ input:checked + .toggleSwitchSlider:before {
     border-top: none;
     border-radius: 0px 0px 3px 3px;
 }
+
 /* Hide the items when the select box is closed. */
 .settingsSelectOptions[hidden] {
     display: none;
 }
+
 .settingsSelectOptions::-webkit-scrollbar {
     width: 2px;
 }
+
 .settingsSelectOptions::-webkit-scrollbar-track {
     display: none;
 }
+
 .settingsSelectOptions::-webkit-scrollbar-thumb {
     border-radius: 10px;
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.50);
@@ -2002,17 +2151,20 @@ input:checked + .toggleSwitchSlider:before {
     color: #ffffff;
     cursor: pointer;
 }
+
 .settingsSelectOptions div {
     border-width: 0px 0px 1px 0px;
     font-size: 12px;
     padding: 4px 16px;
 }
+
 .settingsSelectOptions div:last-child {
     border-bottom: none;
 }
 
 /* Hover + selected styles. */
-.settingsSelectOptions div:hover, .settingsSelectOptions div[selected] {
+.settingsSelectOptions div:hover,
+.settingsSelectOptions div[selected] {
     background-color: rgba(255, 255, 255, 0.25) !important;
 }
 
@@ -2027,12 +2179,14 @@ input:checked + .toggleSwitchSlider:before {
     transition: 0.25s ease;
     outline: none;
 }
+
 #settingsTabJava a:hover,
 #settingsTabJava a:focus,
 .settingsChangelogText a:hover,
 .settingsChangelogText a:focus {
     color: rgba(255, 255, 255, 0.75);
 }
+
 #settingsTabJava a:active,
 .settingsChangelogText a:active {
     color: rgba(165, 165, 165, 0.75);
@@ -2060,9 +2214,11 @@ input:checked + .toggleSwitchSlider:before {
     justify-content: space-between;
     width: 100%;
 }
+
 #settingsMemoryContentLeft {
     width: 69%;
 }
+
 #settingsMemoryContentRight {
     display: flex;
     align-items: center;
@@ -2098,19 +2254,23 @@ input:checked + .toggleSwitchSlider:before {
     display: flex;
     flex-direction: column;
 }
-#settingsMemoryStatus > .settingsMemoryStatusContainer:not(:last-child){
+
+#settingsMemoryStatus>.settingsMemoryStatusContainer:not(:last-child) {
     margin-bottom: 50%;
 }
+
 .settingsMemoryStatusContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .settingsMemoryStatusTitle {
     font-size: 12px;
     color: grey;
     font-weight: bold;
 }
+
 .settingsMemoryStatusValue {
     color: lightgrey;
     font-size: 16px;
@@ -2154,7 +2314,8 @@ input:checked + .toggleSwitchSlider:before {
     padding: 5px 10px;
     font-size: 12px;
 }
-#settingsJVMOptsContent:focus-within > .settingsJavaIcon {
+
+#settingsJVMOptsContent:focus-within>.settingsJavaIcon {
     background: rgba(126, 126, 126, 0.87);
 }
 
@@ -2205,11 +2366,13 @@ input:checked + .toggleSwitchSlider:before {
     padding-bottom: 5px;
     border-bottom: 1px solid rgba(126, 126, 126, 0.57);
 }
+
 #settingsAboutLogo {
     width: 30px;
     height: 30px;
     padding: 5px;
 }
+
 #settingsAboutTitle {
     font-size: 23px;
     padding-left: 10px;
@@ -2262,6 +2425,7 @@ input:checked + .toggleSwitchSlider:before {
     padding: 0px 15px;
     margin-bottom: 5px;
 }
+
 .settingsAboutButton {
     background: none;
     border: none;
@@ -2272,10 +2436,12 @@ input:checked + .toggleSwitchSlider:before {
     outline: none;
     text-decoration: none;
 }
+
 .settingsAboutButton:hover,
 .settingsAboutButton:focus {
     color: rgb(165, 165, 165);
 }
+
 .settingsAboutButton:active {
     color: rgba(124, 124, 124, 0.75);
 }
@@ -2304,6 +2470,7 @@ input:checked + .toggleSwitchSlider:before {
     margin-bottom: 10px;
     border-bottom: 1px solid rgba(126, 126, 126, 0.57);
 }
+
 /* Changelog header label. */
 .settingsChangelogLabel {
     font-size: 12px;
@@ -2321,12 +2488,14 @@ input:checked + .toggleSwitchSlider:before {
     margin-bottom: 16px;
     line-height: 1.5;
 }
+
 .settingsChangelogText blockquote {
     border-left: 0.25em solid rgba(126, 126, 126, 0.95);
     margin: 0px;
     padding: 0 0 0 1em;
     color: rgba(255, 255, 255, 0.85);
 }
+
 .settingsChangelogText code {
     padding: 0.1em 0.4em;
     font-size: 85%;
@@ -2335,18 +2504,22 @@ input:checked + .toggleSwitchSlider:before {
     border-radius: 3px;
     font-family: 'Avenir Book';
 }
+
 .settingsChangelogText li+li {
     margin-top: .25em;
 }
+
 .settingsChangelogText a.commit-link {
     font-weight: 400;
     color: #ffffff;
     text-decoration: none;
 }
+
 .settingsChangelogText a.commit-link:hover {
     text-decoration: underline !important;
     text-decoration-color: black;
 }
+
 .settingsChangelogText tt {
     padding: 0.1em 0.4em;
     font-size: 86%;
@@ -2355,15 +2528,18 @@ input:checked + .toggleSwitchSlider:before {
     color: black;
     font-weight: bold;
 }
+
 .settingsChangelogText a.commit-link:hover tt {
     text-decoration: underline;
     text-decoration-color: black;
 }
+
 .settingsChangelogText .highlight {
     background: rgba(0, 0, 0, 0.30);
     user-select: initial;
     padding: 5px 10px;
 }
+
 .settingsChangelogText .highlight pre {
     margin: 0px;
 }
@@ -2407,6 +2583,7 @@ input:checked + .toggleSwitchSlider:before {
     padding-bottom: 5px;
     border-bottom: 1px solid rgba(126, 126, 126, 0.57);
 }
+
 #settingsUpdateTitle {
     font-size: 16px;
     padding-left: 10px;
@@ -2476,14 +2653,17 @@ input:checked + .toggleSwitchSlider:before {
     text-align: left;
     transition: 0.25s ease;
 }
+
 #settingsUpdateActionButton:hover,
 #settingsUpdateActionButton:focus {
     text-shadow: 0px 0px 20px white, 0px 0px 20px white, 0px 0px 20px white;
 }
+
 #settingsUpdateActionButton:active {
     text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
     color: #c7c7c7;
 }
+
 #settingsUpdateActionButton:disabled {
     pointer-events: none;
 }
@@ -2504,32 +2684,35 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Upper content container. */
-#landingContainer > #upper {
+#landingContainer>#upper {
     position: relative;
     transition: top 2s ease;
     top: 0px;
-    height: 77%;
+    height: 100%;
     display: flex;
 }
-#landingContainer > #upper > #left {
+
+#landingContainer>#upper>#left {
     display: inline-flex;
     width: 15%;
     height: 100%;
     justify-content: flex-end;
 }
-#landingContainer > #upper > #content {
+
+#landingContainer>#upper>#content {
     display: inline-flex;
     width: 70%;
     height: 100%;
 }
-#landingContainer > #upper > #right {
+
+#landingContainer>#upper>#right {
     display: inline-flex;
     width: 15%;
     height: 100%;
     background: transparent !important;
 }
 
-#landingContainer > #lower {
+#landingContainer>#lower {
     height: 23%;
     display: flex;
     background: transparent;
@@ -2537,7 +2720,8 @@ input:checked + .toggleSwitchSlider:before {
     -webkit-backdrop-filter: none;
     border-top: none;
 }
-#landingContainer > #lower > #left {
+
+#landingContainer>#lower>#left {
     position: relative;
     transition: top 2s ease;
     top: 0px;
@@ -2546,12 +2730,13 @@ input:checked + .toggleSwitchSlider:before {
     display: inline-flex;
     justify-content: center;
 }
+
 /* Hero Avatar Centerpiece */
 #hero_avatar_container {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -55%);
+    transform: translate(-50%, -50%);
     width: 60%;
     height: 70%;
     display: flex;
@@ -2565,9 +2750,7 @@ input:checked + .toggleSwitchSlider:before {
     height: 110%;
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 35px 50px rgba(0,0,0,0.6));
-    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    mix-blend-mode: screen;
 }
 
 .avatar_glow {
@@ -2582,7 +2765,8 @@ input:checked + .toggleSwitchSlider:before {
 #info_panel {
     position: absolute;
     left: 40px;
-    top: 100px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -2595,42 +2779,97 @@ input:checked + .toggleSwitchSlider:before {
     transition: transform 0.3s ease;
 }
 
-.info_card:hover { transform: translateY(-5px); }
+.info_card:hover {
+    transform: translateY(-5px);
+}
 
-.info_label { font-size: 9px; font-weight: 800; color: #888; letter-spacing: 2px; }
-.info_value { display: block; font-size: 1.1rem; font-weight: 700; margin-top: 5px; }
-.info_status { font-size: 11px; margin-top: 8px; color: #91b849; display: flex; align-items: center; gap: 6px; }
+.info_label {
+    font-size: 9px;
+    font-weight: 800;
+    color: #888;
+    letter-spacing: 2px;
+}
+
+.info_value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.info_status {
+    font-size: 11px;
+    margin-top: 8px;
+    color: #91b849;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
 
 /* Professional Footer */
 #launcher_footer {
     position: absolute;
     bottom: 30px;
     left: 40px;
+    right: 40px;
     display: flex;
-    align-items: center;
-    gap: 30px;
+    align-items: flex-end;
+    justify-content: space-between;
     z-index: 10;
 }
 
-.footer_section { display: flex; flex-direction: column; }
-.footer_label { font-size: 8px; font-weight: 800; color: #666; letter-spacing: 2px; }
-.footer_value { font-size: 11px; font-weight: 600; margin-top: 2px; }
-.footer_value.green { color: #91b849; }
-.footer_divider { width: 1px; height: 25px; background: rgba(255, 255, 255, 0.1); }
+.footer_section {
+    display: flex;
+    flex-direction: column;
+}
 
-.status_dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
-.status_dot.green { background: #91b849; box-shadow: 0 0 10px #91b849; }
+.footer_label {
+    font-size: 8px;
+    font-weight: 800;
+    color: #666;
+    letter-spacing: 2px;
+}
+
+.footer_value {
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.footer_value.green {
+    color: #91b849;
+}
+
+.footer_divider {
+    width: 1px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.status_dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status_dot.green {
+    background: #91b849;
+    box-shadow: 0 0 10px #91b849;
+}
 
 /* Social Bar Refinement */
 #social_bar {
     position: absolute;
     right: 40px;
-    top: 100px;
+    top: 45%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
     gap: 15px;
     z-index: 10;
 }
+
 
 .social_item {
     width: 50px;
@@ -2640,26 +2879,36 @@ input:checked + .toggleSwitchSlider:before {
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 50%;
 }
 
-.social_item:hover { color: #ff8c2e; background: rgba(255, 255, 255, 0.1); }
-.social_item span { font-size: 22px; }
-#landingContainer > #lower > #center {
-    position: relative;
-    transition: top 2s ease;
-    top: 0px;
-    height: 100%;
-    width: 34%;
-    display: inline-flex;
-    justify-content: center;
+.social_item:hover {
+    color: #ff8c2e;
+    background: rgba(255, 255, 255, 0.1);
 }
-#landingContainer > #lower > #center #content {
+
+.social_item span {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#landingContainer>#lower>#center {
+    display: none;
+}
+
+#landingContainer>#lower>#center #content {
     position: relative;
     z-index: 500;
     transition: top 2s ease;
     top: 10px;
 }
-#landingContainer > #lower > #right {
+
+#landingContainer>#lower>#right {
     position: relative;
     transition: top 2s ease;
     top: 0px;
@@ -2711,6 +2960,7 @@ input:checked + .toggleSwitchSlider:before {
     opacity: 0;
     transition: opacity 0.25s ease;
 }
+
 #newsContent[scrolled]:before {
     opacity: 1;
 }
@@ -2750,10 +3000,12 @@ input:checked + .toggleSwitchSlider:before {
     outline: none;
     text-align: right;
 }
+
 #newsArticleTitle:hover,
 #newsArticleTitle:focus {
     text-shadow: 0px 0px 20px white;
 }
+
 #newsArticleTitle:active {
     color: #c7c7c7;
     text-shadow: 0px 0px 20px #c7c7c7;
@@ -2805,10 +3057,12 @@ input:checked + .toggleSwitchSlider:before {
     outline: none;
     text-align: right;
 }
+
 #newsArticleComments:focus,
 #newsArticleComments:hover {
     color: #e0e0e0;
 }
+
 #newsArticleComments:active {
     color: #c7c7c7;
 }
@@ -2827,34 +3081,42 @@ input:checked + .toggleSwitchSlider:before {
     height: 100%;
     padding: 0px 15px 0px 15px;
 }
+
 #newsArticleContentScrollable img,
 #newsArticleContentScrollable iframe {
     max-width: 95%;
     display: block;
     margin: 0 auto;
 }
+
 #newsArticleContentScrollable a {
     color: rgba(202, 202, 202, 0.75);
     transition: 0.25s ease;
     outline: none;
 }
+
 #newsArticleContentScrollable a:hover,
 #newsArticleContentScrollable a:focus {
     color: rgba(255, 255, 255, 0.75);
 }
+
 #newsArticleContentScrollable a:active {
     color: rgba(165, 165, 165, 0.75);
 }
+
 #newsArticleContentScrollable::-webkit-scrollbar {
     width: 2px;
 }
+
 #newsArticleContentScrollable::-webkit-scrollbar-track {
     display: none;
 }
+
 #newsArticleContentScrollable::-webkit-scrollbar-thumb {
     border-radius: 10px;
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.50);
 }
+
 .bbCodeSpoilerButton {
     background: none;
     border: none;
@@ -2866,14 +3128,17 @@ input:checked + .toggleSwitchSlider:before {
     border-bottom: 1px solid white;
     padding-bottom: 15px;
 }
+
 .bbCodeSpoilerButton:hover,
 .bbCodeSpoilerButton:focus {
     text-shadow: 0px 0px 20px #ffffff, 0px 0px 20px #ffffff, 0px 0px 20px #ffffff;
 }
+
 .bbCodeSpoilerButton:active {
     color: #c7c7c7;
     text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
 }
+
 .bbCodeSpoilerText {
     display: none;
     padding: 15px 0px;
@@ -2921,28 +3186,34 @@ input:checked + .toggleSwitchSlider:before {
     height: 20px;
     cursor: pointer;
 }
+
 #newsNavigateLeft:hover #newsNavigationLeftSVG,
 #newsNavigateLeft:focus #newsNavigationLeftSVG,
 #newsNavigateRight:hover #newsNavigationRightSVG,
 #newsNavigateRight:focus #newsNavigationRightSVG {
     -webkit-filter: drop-shadow(0px 0px 2px #fff);
 }
+
 #newsNavigateLeft:active #newsNavigationLeftSVG .arrowLine,
 #newsNavigateRight:active #newsNavigationRightSVG .arrowLine {
     stroke: #c7c7c7;
 }
+
 #newsNavigateLeft:active #newsNavigationLeftSVG,
 #newsNavigateRight:active #newsNavigationRightSVG {
     -webkit-filter: drop-shadow(0px 0px 2px #c7c7c7);
 }
+
 #newsNavigateLeft:disabled #newsNavigationLeftSVG .arrowLine,
 #newsNavigateRight:disabled #newsNavigationRightSVG .arrowLine {
     stroke: rgba(255, 255, 255, 0.75);
 }
+
 #newsNavigationLeftSVG {
     transform: rotate(-90deg);
     width: 15px;
 }
+
 #newsNavigationRightSVG {
     transform: rotate(90deg);
     width: 15px;
@@ -2956,6 +3227,7 @@ input:checked + .toggleSwitchSlider:before {
     flex-direction: column;
     justify-content: center;
 }
+
 #newsErrorFailed {
     display: flex;
     align-items: center;
@@ -2967,13 +3239,16 @@ input:checked + .toggleSwitchSlider:before {
 .newsErrorContent {
     font-size: 20px;
 }
+
 #newsErrorLoading {
     display: flex;
     width: 168.92px;
 }
+
 #nELoadSpan {
     white-space: pre;
 }
+
 /* News error retry button styles. */
 #newsErrorRetry {
     font-size: 12px;
@@ -2984,10 +3259,12 @@ input:checked + .toggleSwitchSlider:before {
     outline: none;
     transition: 0.25s ease;
 }
+
 #newsErrorRetry:focus,
 #newsErrorRetry:hover {
     text-shadow: 0px 0px 20px white;
 }
+
 #newsErrorRetry:active {
     color: #c7c7c7;
     text-shadow: 0px 0px 20px #c7c7c7;
@@ -3023,9 +3300,10 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Logo container styles w/ update. */
-#image_seal_container[update]{
+#image_seal_container[update] {
     cursor: pointer
 }
+
 #image_seal_container[update]:before,
 #image_seal_container[update]:after {
     cursor: pointer;
@@ -3040,6 +3318,7 @@ input:checked + .toggleSwitchSlider:before {
     animation: glow-grow 4s ease-out infinite;
     background: rgba(0, 0, 0, 0.15);
 }
+
 #image_seal_container[update]:before {
     animation-delay: 2s;
 }
@@ -3064,6 +3343,7 @@ input:checked + .toggleSwitchSlider:before {
     font-size: 12px;
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
+
 #updateAvailableTooltip::after {
     content: " ";
     position: absolute;
@@ -3074,6 +3354,7 @@ input:checked + .toggleSwitchSlider:before {
     border-style: solid;
     border-color: transparent transparent rgb(0, 0, 0) transparent;
 }
+
 #image_seal_container[update]:hover #updateAvailableTooltip {
     visibility: visible;
     opacity: 1;
@@ -3086,9 +3367,11 @@ input:checked + .toggleSwitchSlider:before {
         opacity: 0;
         transform: scale(1);
     }
+
     80% {
         opacity: 1;
     }
+
     100% {
         transform: scale(1.5);
         opacity: 0;
@@ -3153,10 +3436,12 @@ input:checked + .toggleSwitchSlider:before {
     height: 100%;
     border-radius: 50%;
 }
+
 #avatarOverlay:hover,
 #avatarOverlay:focus {
     opacity: 1;
 }
+
 #avatarOverlay:active {
     background-color: rgba(0, 0, 0, 0.45);
 }
@@ -3186,7 +3471,8 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Social Media Icon division containers. */
-#internalMedia, #externalMedia {
+#internalMedia,
+#externalMedia {
     display: flex;
     flex-direction: column;
 }
@@ -3216,6 +3502,7 @@ input:checked + .toggleSwitchSlider:before {
     height: 12px;
     width: 25px;
 }
+
 .mediaSVG:hover,
 .mediaURL:focus .mediaSVG,
 .mediaSVG:active {
@@ -3246,6 +3533,7 @@ input:checked + .toggleSwitchSlider:before {
     stroke: #ffffff;
     height: 15px;
 }
+
 .mediaButton:hover #settingsSVG,
 .mediaButton:focus #settingsSVG,
 .mediaButton:active #settingsSVG {
@@ -3268,6 +3556,7 @@ input:checked + .toggleSwitchSlider:before {
     line-height: 20px;
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
+
 #settingsTooltip::after {
     content: " ";
     position: absolute;
@@ -3278,12 +3567,13 @@ input:checked + .toggleSwitchSlider:before {
     border-style: solid;
     border-color: transparent transparent transparent rgba(0, 0, 0, 0.75);
 }
+
 .mediaButton:hover #settingsTooltip,
 .mediaButton:focus #settingsTooltip,
 .mediaButton:active #settingsTooltip {
     visibility: visible;
     opacity: 1;
-    transition-delay:0s;
+    transition-delay: 0s;
 }
 
 /* X icon colors. */
@@ -3291,6 +3581,7 @@ input:checked + .toggleSwitchSlider:before {
 #xURL:focus #xSVG {
     fill: #000000;
 }
+
 #xSVG:active {
     fill: #090909;
 }
@@ -3299,8 +3590,9 @@ input:checked + .toggleSwitchSlider:before {
 #instagramSVG:hover,
 #instagramURL:focus #instagramSVG {
     fill: url('#instaFill')
-    /*fill: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); */
+        /*fill: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); */
 }
+
 #instagramSVG:active {
     fill: url('#instaFill')
 }
@@ -3310,6 +3602,7 @@ input:checked + .toggleSwitchSlider:before {
 #youtubeURL:focus #youtubeSVG {
     fill: #f00;
 }
+
 #youtubeSVG:active {
     fill: #ea0202;
 }
@@ -3319,6 +3612,7 @@ input:checked + .toggleSwitchSlider:before {
 #discordURL:focus #discordSVG {
     fill: #7288d9;
 }
+
 #discordSVG:active {
     fill: #657ac4;
 }
@@ -3401,6 +3695,7 @@ input:checked + .toggleSwitchSlider:before {
     box-shadow: 0px 0px 20px rgb(0, 0, 0);
     cursor: default;
 }
+
 #mojangStatusTooltip:after {
     content: " ";
     position: absolute;
@@ -3411,6 +3706,7 @@ input:checked + .toggleSwitchSlider:before {
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
 }
+
 #mojangStatusWrapper:hover #mojangStatusTooltip {
     visibility: visible;
     opacity: 1;
@@ -3479,10 +3775,12 @@ input:checked + .toggleSwitchSlider:before {
     cursor: pointer;
     outline: none;
 }
+
 #newsButton:hover #newsButtonText,
 #newsButton:focus #newsButtonText {
     text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff;
 }
+
 #newsButton:active {
     color: #c7c7c7;
     text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
@@ -3492,12 +3790,15 @@ input:checked + .toggleSwitchSlider:before {
 #newsButton:focus #newsButtonSVG {
     -webkit-filter: drop-shadow(0px 0px 2px #fff);
 }
+
 #newsButton:active #newsButtonSVG .arrowLine {
     stroke: #c7c7c7;
 }
+
 #newsButton:active #newsButtonSVG {
     -webkit-filter: drop-shadow(0px 0px 2px #c7c7c7);
 }
+
 #newsButton:disabled #newsButtonSVG .arrowLine {
     stroke: rgba(255, 255, 255, 0.75);
 }
@@ -3537,10 +3838,12 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Main launch content container. */
-#landingContainer > #lower > #right #launch_content {
+#launch_content {
     position: relative;
-    top: 25px;
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 20;
 }
 
 /* The launch button. */
@@ -3580,6 +3883,7 @@ input:checked + .toggleSwitchSlider:before {
 #launch_button:active {
     transform: translateY(2px) scale(0.95);
 }
+
 #launch_button:disabled {
     color: #c7c7c7;
     cursor: default;
@@ -3592,7 +3896,7 @@ input:checked + .toggleSwitchSlider:before {
     top: 25px;
     display: none;
 }
- 
+
 /* Left side of launch details container, displays percentage and a divider. */
 #launch_details_left {
     display: flex;
@@ -3626,10 +3930,12 @@ input:checked + .toggleSwitchSlider:before {
     padding: 0px;
     transition: 0.25s ease;
 }
+
 #server_selection_button:hover,
 #server_selection_button:focus {
     text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff, 0px 0px 20px #fff;
 }
+
 #server_selection_button:active {
     color: #c7c7c7;
     text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
@@ -3641,9 +3947,11 @@ input:checked + .toggleSwitchSlider:before {
     width: 265px;
     -webkit-appearance: none;
 }
+
 #launch_progress[value]::-webkit-progress-bar {
     background-color: transparent;
 }
+
 #launch_progress[value]::-webkit-progress-value {
     background-color: #fff;
 }
@@ -3700,24 +4008,28 @@ input:checked + .toggleSwitchSlider:before {
     color: rgba(202, 202, 202, 0.75);
     transition: 0.25s ease;
 }
+
 #overlayContent a:hover,
 #overlayContent a:focus,
 #overlayDismiss:focus {
     color: rgba(255, 255, 255, 0.75);
 }
+
 #overlayContent a:active,
 #overlayDismiss:active {
     color: rgba(165, 165, 165, 0.75);
 }
 
 /* Add spacing between overlay content elements. */
-#overlayContent > *:first-child {
+#overlayContent>*:first-child {
     margin-top: 0px !important;
 }
-#overlayContent > *:last-child {
+
+#overlayContent>*:last-child {
     margin-bottom: 0px !important;
 }
-#overlayContent > * {
+
+#overlayContent>* {
     margin: 8px 0px;
 }
 
@@ -3756,11 +4068,13 @@ input:checked + .toggleSwitchSlider:before {
     cursor: pointer;
     transition: 0.25s ease;
 }
+
 #overlayAcknowledge:hover,
 #overlayAcknowledge:focus {
     box-shadow: 0px 0px 10px 0px #fff;
     outline: none;
 }
+
 #overlayAcknowledge:active {
     border-color: rgba(255, 255, 255, 0.75);
     color: rgba(255, 255, 255, 0.75);
@@ -3777,9 +4091,11 @@ input:checked + .toggleSwitchSlider:before {
     outline: none;
     cursor: pointer;
 }
+
 #overlayDismiss:hover {
     color: rgba(255, 255, 255, 0.75);
 }
+
 #overlayDismiss:active {
     color: rgba(165, 165, 165, 0.75);
 }
@@ -3825,14 +4141,17 @@ input:checked + .toggleSwitchSlider:before {
     padding: 0px 5px;
     overflow-y: scroll;
 }
+
 #serverSelectListScrollable::-webkit-scrollbar,
 #accountSelectListScrollable::-webkit-scrollbar {
     width: 2px;
 }
+
 #serverSelectListScrollable::-webkit-scrollbar-track,
 #accountSelectListScrollable::-webkit-scrollbar-track {
     display: none;
 }
+
 #serverSelectListScrollable::-webkit-scrollbar-thumb,
 #accountSelectListScrollable::-webkit-scrollbar-thumb {
     border-radius: 10px;
@@ -3854,10 +4173,12 @@ input:checked + .toggleSwitchSlider:before {
     position: relative;
     background: rgba(131, 131, 131, 0.25);
 }
+
 .serverListing[selected] {
     cursor: default;
     opacity: 1.0;
 }
+
 .serverListing:hover,
 .serverListing:focus {
     outline: none;
@@ -3879,10 +4200,12 @@ input:checked + .toggleSwitchSlider:before {
     position: relative;
     background: rgba(0, 0, 0, 0.25);
 }
+
 .accountListing[selected] {
     cursor: default;
     opacity: 1.0;
 }
+
 .accountListing:hover,
 .accountListing:focus {
     outline: none;
@@ -3897,16 +4220,18 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Add spacing between server listings. */
-#serverSelectListScrollable > .serverListing:not(:first-child):not(:last-child),
-#accountSelectListScrollable > .accountListing:not(:first-child):not(:last-child) {
+#serverSelectListScrollable>.serverListing:not(:first-child):not(:last-child),
+#accountSelectListScrollable>.accountListing:not(:first-child):not(:last-child) {
     margin: 5px 0px;
 }
-#serverSelectListScrollable > .serverListing:first-child,
-#accountSelectListScrollable > .accountListing:first-child {
+
+#serverSelectListScrollable>.serverListing:first-child,
+#accountSelectListScrollable>.accountListing:first-child {
     margin-bottom: 5px;
 }
-#serverSelectListScrollable > .serverListing:last-child,
-#accountSelectListScrollable > .accountListing:last-child {
+
+#serverSelectListScrollable>.serverListing:last-child,
+#accountSelectListScrollable>.accountListing:last-child {
     margin-top: 5px;
 }
 
@@ -3978,6 +4303,7 @@ input:checked + .toggleSwitchSlider:before {
     height: 12px;
     position: relative;
 }
+
 /* Tooltip which displays when hovering over the star. */
 .serverListingStarTooltip {
     visibility: hidden;
@@ -3992,20 +4318,23 @@ input:checked + .toggleSwitchSlider:before {
     font-size: 10px;
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
+
 .serverListingStarTooltip::after {
     content: " ";
     position: absolute;
     top: 50%;
-    right: 100%; /* To the left of the tooltip */
+    right: 100%;
+    /* To the left of the tooltip */
     margin-top: -5px;
     border-width: 5px;
     border-style: solid;
     border-color: transparent rgba(0, 0, 0, 0.40) transparent transparent;
 }
+
 .serverListingStarWrapper:hover .serverListingStarTooltip {
     visibility: visible;
     opacity: 1;
-    transition-delay:0s;
+    transition-delay: 0s;
 }
 
 /* Content container which contains the server select actions. */
@@ -4032,6 +4361,7 @@ input:checked + .toggleSwitchSlider:before {
     transition: 0.25s ease;
     min-height: 20.67px;
 }
+
 #serverSelectConfirm:hover,
 #serverSelectConfirm:focus,
 #accountSelectConfirm:hover,
@@ -4039,6 +4369,7 @@ input:checked + .toggleSwitchSlider:before {
     box-shadow: 0px 0px 10px 0px #fff;
     outline: none;
 }
+
 #serverSelectConfirm:active,
 #accountSelectConfirm:active {
     border-color: rgba(255, 255, 255, 0.75);
@@ -4059,12 +4390,14 @@ input:checked + .toggleSwitchSlider:before {
     outline: none;
     cursor: pointer;
 }
+
 #serverSelectCancel:hover,
 #serverSelectCancel:focus,
 #accountSelectCancel:hover,
 #accountSelectCancel:focus {
     color: rgba(255, 255, 255, 0.75);
 }
+
 #serverSelectCancel:active,
 #accountSelectCancel:active {
     color: rgba(165, 165, 165, 0.75);
@@ -4123,6 +4456,7 @@ input:checked + .toggleSwitchSlider:before {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }

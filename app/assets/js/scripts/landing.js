@@ -102,6 +102,9 @@ function setLaunchEnabled(val){
 document.getElementById('launch_button').addEventListener('click', async e => {
     loggerLanding.info('Launching game..')
     try {
+        setLaunchDetails(Lang.queryJS('landing.dlAsync.loadingServerInfo'))
+        const distro = await DistroAPI.refreshDistributionOrFallback()
+        window.onDistroRefresh(distro)
         const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
         const jExe = ConfigManager.getJavaExecutable(ConfigManager.getSelectedServer())
         if(jExe == null){
@@ -166,10 +169,38 @@ function updateSelectedServer(serv){
     ConfigManager.setSelectedServer(serv != null ? serv.rawServer.id : null)
     ConfigManager.save()
     server_selection_button.innerHTML = '&#8226; ' + (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'))
+    
+    // Update the dynamic version info card (Show loader immediately)
+    const landing_info_version = document.getElementById('landing_info_version')
+    if (landing_info_version) {
+        landing_info_version.innerHTML = '<div class="circle-loader" style="display: block; width: 16px; height: 16px; margin: 0; animation-duration: 2s;"></div> Loading...'
+        // Only set the real version once we're sure
+        if (serv) {
+             // Artificial delay or immediate ? Let's go immediate for version string as it's local index
+             landing_info_version.innerHTML = `Java Edition ${serv.rawServer.minecraftVersion}`
+        } else {
+             landing_info_version.innerHTML = 'Unknown Version'
+        }
+    }
+
+    // Reset Multiplayer Status card to Loading
+    const landing_info_players = document.getElementById('landing_info_players')
+    const landing_info_motd = document.getElementById('landing_info_motd')
+    if (landing_info_players) {
+        landing_info_players.innerHTML = '<div class="circle-loader" style="display: block; width: 16px; height: 16px; margin: 0; animation-duration: 2s;"></div> Fetching players...'
+    }
+    if (landing_info_motd) {
+        landing_info_motd.innerHTML = 'Updating server info...'
+    }
+
     if(getCurrentView() === VIEWS.settings){
         animateSettingsTabRefresh()
     }
     setLaunchEnabled(serv != null)
+
+    // Refresh the player status card immediately (performs the real network fetch)
+    // We pass 'serv' directly to avoid any async race with ConfigManager
+    refreshServerStatus(false, serv)
 }
 // Real text is set in uibinder.js on distributionIndexDone.
 server_selection_button.innerHTML = '&#8226; ' + Lang.queryJS('landing.selectedServer.loading')
@@ -180,35 +211,75 @@ server_selection_button.onclick = async e => {
 
 
 
-const refreshServerStatus = async (fade = false) => {
+const refreshServerStatus = async (fade = false, servOverride = null) => {
     loggerLanding.info('Refreshing Server Status')
-    const serv = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
+    
+    // Use the overriden server object if available, otherwise fetch the selected one
+    let serv = servOverride
+    if (!serv) {
+        serv = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
+    }
+
+    if (!serv) {
+        loggerLanding.warn('No server selected for status refresh.')
+        return
+    }
+
+    const targetHost = serv.hostname
+    const targetPort = parseInt(serv.port || 25565)
+    loggerLanding.info(`[NETWORK] Attempting status check for ${targetHost}:${targetPort} (Protocol 767)`)
+    // DEBUG: Log the full server object once to verify the distribution data
+    loggerLanding.debug(`[DEBUG] Server Object Data: ${JSON.stringify({id: serv.id, hostname: serv.hostname, port: serv.port})}`)
 
     let pLabel = Lang.queryJS('landing.serverStatus.server')
     let pVal = Lang.queryJS('landing.serverStatus.offline')
+    let pMotd = 'No response from server.'
 
     try {
-
-        const servStat = await getServerStatus(47, serv.hostname, serv.port)
-        console.log(servStat)
+        // Using protocol 767 (Minecraft 1.21.1) for better compatibility with modern servers
+        const servStat = await getServerStatus(767, targetHost, targetPort)
         pLabel = Lang.queryJS('landing.serverStatus.players')
         pVal = servStat.players.online + '/' + servStat.players.max
+        
+        // Extract MOTD (description)
+        if (servStat.description) {
+            if (typeof servStat.description === 'string') {
+                pMotd = servStat.description
+            } else if (typeof servStat.description === 'object') {
+                if (servStat.description.text) {
+                    pMotd = servStat.description.text
+                } else if (servStat.description.extra) {
+                    pMotd = servStat.description.extra.map(e => e.text).join('')
+                }
+            }
+            pMotd = pMotd.replace(/§[0-9a-fk-or]/gi, '').trim()
+        }
+        loggerLanding.info(`[NETWORK] Connection Successful! ${pVal} players found.`)
 
     } catch (err) {
-        loggerLanding.warn('Unable to refresh server status, assuming offline.')
-        loggerLanding.debug(err)
+        loggerLanding.warn(`[NETWORK] Connection Failed for ${targetHost}:${targetPort}. Server might be offline or blocking pings.`, err.message)
     }
+
+    const landing_info_players = document.getElementById('landing_info_players')
+    const landing_info_motd = document.getElementById('landing_info_motd')
+    if (landing_info_players) landing_info_players.innerHTML = pVal + ' Players'
+    if (landing_info_motd) landing_info_motd.innerHTML = pMotd
+
+    // Update old UI elements if they exist for compatibility
     if(fade){
         $('#server_status_wrapper').fadeOut(250, () => {
-            document.getElementById('landingPlayerLabel').innerHTML = pLabel
-            document.getElementById('player_count').innerHTML = pVal
+            const landing_lbl = document.getElementById('landingPlayerLabel')
+            const player_count = document.getElementById('player_count')
+            if (landing_lbl) landing_lbl.innerHTML = pLabel
+            if (player_count) player_count.innerHTML = pVal
             $('#server_status_wrapper').fadeIn(500)
         })
     } else {
-        document.getElementById('landingPlayerLabel').innerHTML = pLabel
-        document.getElementById('player_count').innerHTML = pVal
+        const landing_lbl = document.getElementById('landingPlayerLabel')
+        const player_count = document.getElementById('player_count')
+        if (landing_lbl) landing_lbl.innerHTML = pLabel
+        if (player_count) player_count.innerHTML = pVal
     }
-    
 }
 
 // Server Status is refreshed in uibinder.js on distributionIndexDone.
@@ -647,23 +718,26 @@ function slide_(up){
 }
 
 // Bind news button.
-document.getElementById('newsButton').onclick = () => {
-    // Toggle tabbing.
-    if(newsActive){
-        $('#landingContainer *').removeAttr('tabindex')
-        $('#newsContainer *').attr('tabindex', '-1')
-    } else {
-        $('#landingContainer *').attr('tabindex', '-1')
-        $('#newsContainer, #newsContainer *, #lower, #lower #center *').removeAttr('tabindex')
-        if(newsAlertShown){
-            $('#newsButtonAlert').fadeOut(2000)
-            newsAlertShown = false
-            ConfigManager.setNewsCacheDismissed(true)
-            ConfigManager.save()
+let bnA = document.getElementById('newsButton')
+if (bnA) {
+    bnA.onclick = () => {
+        // Toggle tabbing.
+        if(newsActive){
+            $('#landingContainer *').removeAttr('tabindex')
+            $('#newsContainer *').attr('tabindex', '-1')
+        } else {
+            $('#landingContainer *').attr('tabindex', '-1')
+            $('#newsContainer, #newsContainer *, #lower, #lower #center *').removeAttr('tabindex')
+            if(newsAlertShown){
+                $('#newsButtonAlert').fadeOut(2000)
+                newsAlertShown = false
+                ConfigManager.setNewsCacheDismissed(true)
+                ConfigManager.save()
+            }
         }
+        slide_(!newsActive)
+        newsActive = !newsActive
     }
-    slide_(!newsActive)
-    newsActive = !newsActive
 }
 
 // Array to store article meta.
@@ -681,14 +755,14 @@ function setNewsLoading(val){
     if(val){
         const nLStr = Lang.queryJS('landing.news.checking')
         let dotStr = '..'
-        nELoadSpan.innerHTML = nLStr + dotStr
+        if(typeof nELoadSpan !== 'undefined' && nELoadSpan) nELoadSpan.innerHTML = nLStr + dotStr
         newsLoadingListener = setInterval(() => {
             if(dotStr.length >= 3){
                 dotStr = ''
             } else {
                 dotStr += '.'
             }
-            nELoadSpan.innerHTML = nLStr + dotStr
+            if(typeof nELoadSpan !== 'undefined' && nELoadSpan) nELoadSpan.innerHTML = nLStr + dotStr
         }, 750)
     } else {
         if(newsLoadingListener != null){
@@ -699,18 +773,22 @@ function setNewsLoading(val){
 }
 
 // Bind retry button.
-newsErrorRetry.onclick = () => {
-    $('#newsErrorFailed').fadeOut(250, () => {
-        initNews()
-        $('#newsErrorLoading').fadeIn(250)
-    })
+if (typeof newsErrorRetry !== 'undefined' && newsErrorRetry) {
+    newsErrorRetry.onclick = () => {
+        $('#newsErrorFailed').fadeOut(250, () => {
+            initNews()
+            $('#newsErrorLoading').fadeIn(250)
+        })
+    }
 }
 
-newsArticleContentScrollable.onscroll = (e) => {
-    if(e.target.scrollTop > Number.parseFloat($('.newsArticleSpacerTop').css('height'))){
-        newsContent.setAttribute('scrolled', '')
-    } else {
-        newsContent.removeAttribute('scrolled')
+if (typeof newsArticleContentScrollable !== 'undefined' && newsArticleContentScrollable) {
+    newsArticleContentScrollable.onscroll = (e) => {
+        if(e.target.scrollTop > Number.parseFloat($('.newsArticleSpacerTop').css('height'))){
+            newsContent.setAttribute('scrolled', '')
+        } else {
+            newsContent.removeAttribute('scrolled')
+        }
     }
 }
 
@@ -738,7 +816,9 @@ let newsAlertShown = false
  */
 function showNewsAlert(){
     newsAlertShown = true
-    $(newsButtonAlert).fadeIn(250)
+    if ($('#newsButtonAlert').length > 0) {
+        $('#newsButtonAlert').fadeIn(250)
+    }
 }
 
 async function digestMessage(str) {
@@ -831,16 +911,22 @@ async function initNews(){
         }
 
         const switchHandler = (forward) => {
+            if (!newsContent) return
             let cArt = parseInt(newsContent.getAttribute('article'))
             let nxtArt = forward ? (cArt >= newsArr.length-1 ? 0 : cArt + 1) : (cArt <= 0 ? newsArr.length-1 : cArt - 1)
     
             displayArticle(newsArr[nxtArt], nxtArt+1)
         }
 
-        document.getElementById('newsNavigateRight').onclick = () => { switchHandler(true) }
-        document.getElementById('newsNavigateLeft').onclick = () => { switchHandler(false) }
+        const navRight = document.getElementById('newsNavigateRight')
+        const navLeft = document.getElementById('newsNavigateLeft')
+        if (navRight) navRight.onclick = () => { switchHandler(true) }
+        if (navLeft) navLeft.onclick = () => { switchHandler(false) }
+
         await $('#newsErrorContainer').fadeOut(250).promise()
-        displayArticle(newsArr[0], 1)
+        if (typeof displayArticle === 'function') {
+            displayArticle(newsArr[0], 1)
+        }
         await $('#newsContent').fadeIn(250).promise()
     }
 
@@ -878,21 +964,27 @@ document.addEventListener('keydown', (e) => {
  * @param {number} index The article index.
  */
 function displayArticle(articleObject, index){
-    newsArticleTitle.innerHTML = articleObject.title
-    newsArticleTitle.href = articleObject.link
-    newsArticleAuthor.innerHTML = 'by ' + articleObject.author
-    newsArticleDate.innerHTML = articleObject.date
-    newsArticleComments.innerHTML = articleObject.comments
-    newsArticleComments.href = articleObject.commentsLink
-    newsArticleContentScrollable.innerHTML = '<div id="newsArticleContentWrapper"><div class="newsArticleSpacerTop"></div>' + articleObject.content + '<div class="newsArticleSpacerBot"></div></div>'
-    Array.from(newsArticleContentScrollable.getElementsByClassName('bbCodeSpoilerButton')).forEach(v => {
-        v.onclick = () => {
-            const text = v.parentElement.getElementsByClassName('bbCodeSpoilerText')[0]
-            text.style.display = text.style.display === 'block' ? 'none' : 'block'
-        }
-    })
-    newsNavigationStatus.innerHTML = Lang.query('ejs.landing.newsNavigationStatus', {currentPage: index, totalPages: newsArr.length})
-    newsContent.setAttribute('article', index-1)
+    if (typeof newsArticleTitle !== 'undefined' && newsArticleTitle) {
+        newsArticleTitle.innerHTML = articleObject.title
+        newsArticleTitle.href = articleObject.link
+    }
+    if (typeof newsArticleAuthor !== 'undefined' && newsArticleAuthor) newsArticleAuthor.innerHTML = 'by ' + articleObject.author
+    if (typeof newsArticleDate !== 'undefined' && newsArticleDate) newsArticleDate.innerHTML = articleObject.date
+    if (typeof newsArticleComments !== 'undefined' && newsArticleComments) {
+        newsArticleComments.innerHTML = articleObject.comments
+        newsArticleComments.href = articleObject.commentsLink
+    }
+    if (typeof newsArticleContentScrollable !== 'undefined' && newsArticleContentScrollable) {
+        newsArticleContentScrollable.innerHTML = '<div id="newsArticleContentWrapper"><div class="newsArticleSpacerTop"></div>' + articleObject.content + '<div class="newsArticleSpacerBot"></div></div>'
+        Array.from(newsArticleContentScrollable.getElementsByClassName('bbCodeSpoilerButton')).forEach(v => {
+            v.onclick = () => {
+                const text = v.parentElement.getElementsByClassName('bbCodeSpoilerText')[0]
+                text.style.display = text.style.display === 'block' ? 'none' : 'block'
+            }
+        })
+    }
+    if (typeof newsNavigationStatus !== 'undefined' && newsNavigationStatus) newsNavigationStatus.innerHTML = Lang.query('ejs.landing.newsNavigationStatus', {currentPage: index, totalPages: newsArr ? newsArr.length : 0})
+    if (typeof newsContent !== 'undefined' && newsContent) newsContent.setAttribute('article', index-1)
 }
 
 /**

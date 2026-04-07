@@ -141,6 +141,7 @@ function onDistroRefresh(data){
     syncModConfigurations(data)
     ensureJavaSettings(data)
 }
+window.onDistroRefresh = onDistroRefresh
 
 /**
  * Sync the mod configurations with the distro index.

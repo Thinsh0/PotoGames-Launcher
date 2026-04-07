@@ -1,9 +1,19 @@
-# Progress Log
+# Project Walkthrough - Execution Log
 
-## 2026-04-05
-- Initial exploration of project structure and `package.json`.
-- Attempted to run `npm start` and captured error: `Cannot read properties of undefined (reading 'loading')` during EJS rendering of `app.ejs`.
-- Fixed `langloader.js` to return the ID instead of crashing on missing translation paths.
-- Added missing `ejs.landing.selectedServer` keys to `en_US.toml`.
-- Changed `const remote` to `var remote` in `uicore.js` to ensure it is globally accessible in the renderer context.
-- Verified that `npm start` now launches without crashes.
+## 2026-04-07: Phase 1 - Robust Logging & Initial Diagnostics
+- [x] Initialized project plan and decision logs.
+- [x] Implemented `index.js` log redirection to `launcher.log` in `userData`.
+- [x] Patched `helios-core` (FullRepairReceiver) to truncate HTML response bodies in logs.
+- [x] Corrected distribution URL format in `distromanager.js` (removed `refs/heads/`).
+- [x] Improved error visibility for network failures.
+
+## 2026-04-07: Phase 2 - Performance Enhancements
+- [x] Installed `patch-package` and set up `postinstall` script.
+- [x] Patched `helios-core` (DistributionIndexProcessor) to parallelize module hashing.
+- [x] Patched `helios-core` (MojangIndexProcessor) to parallelize asset and library hashing.
+- [x] Increased download concurrency from 15 to 30 in `helios-core` (DownloadEngine).
+
+## 2026-04-07: Phase 3 - Distro Refresh
+- [x] Exposed `onDistroRefresh` globally in `uibinder.js`.
+- [x] Implemented mandatory distribution refresh on Play button click in `landing.js`.
+- [x] Verified that launch feedback includes "Loading server information..." during refresh.

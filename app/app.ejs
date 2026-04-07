@@ -12,56 +12,71 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <style>
-        html {
+        html, body {
             background: transparent !important;
             overflow: hidden !important;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
         }
 
-        body {
+        #ui_container {
+            width: calc(100% - 2px);
+            height: calc(100% - 2px);
+            margin: 1px;
             background: rgba(32, 32, 32, 0.75) !important;
-            -webkit-user-select: none;
-            user-select: none;
-            overflow: hidden !important;
-            border-radius: 16px !important;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            /* Force strict Webkit clipping for rounded corners on positioned children */
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            mask-image: radial-gradient(white, black);
+            isolation: isolate;
         }
 
         #main {
             display: none;
-            height: calc(100% - 22px);
+            flex: 1;
             background: transparent;
             width: 100%;
-            position: absolute;
+            position: relative;
             z-index: 10;
             overflow: hidden;
-            border-radius: 16px;
         }
 
         #main[overlay] {
             filter: blur(8px) brightness(0.8);
         }
+
+        #hero_avatar_img {
+            mix-blend-mode: screen;
+        }
     </style>
 </head>
 
 <body bkid="<%=bkid%>">
-    <%- include('frame') %>
+    <div id="ui_container">
+        <%- include('frame') %>
         <div id="main">
             <%- include('welcome') %>
-                <%- include('login') %>
-                    <%- include('waiting') %>
-                        <%- include('loginOptions') %>
-                            <%- include('settings') %>
-                                <%- include('landing') %>
+            <%- include('login') %>
+            <%- include('waiting') %>
+            <%- include('loginOptions') %>
+            <%- include('settings') %>
+            <%- include('landing') %>
         </div>
         <%- include('overlay') %>
-            <div id="loadingContainer">
-                <div id="loadingContent">
-                    <div id="loadSpinnerContainer">
-                        <img id="loadCenterImage" src="assets/images/LoadingSeal.png">
-                        <img id="loadSpinnerImage" class="rotating" src="assets/images/LoadingText.png">
-                    </div>
+        <div id="loadingContainer">
+            <div id="loadingContent">
+                <div id="loadSpinnerContainer">
+                    <img id="loadCenterImage" src="assets/images/logo.png">
                 </div>
             </div>
+        </div>
+    </div>
 </body>
 
 </html>

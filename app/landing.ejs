@@ -3,7 +3,7 @@
         <!-- Hero Avatar Centerpiece -->
         <div id="hero_avatar_container">
             <div class="avatar_glow"></div>
-            <img id="hero_avatar_img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB1TzVQFfavbHTdew4fjS5stRUiKadtyw9l7fA-J5TV3U3Tz6QtJOCspOqCg5oru4L3d9PFZwcoqi1jW5XF1xOiUysRyOrM0qzinFYjGBuGNo6gP1GwlqLWv0xwWKzP-6LNExP1lhS3SiMgaO-Vs-iPAjQNP6N4KR1t1uOAd0fNk5tD52565FPWTcTc6tnItSgEWpFFeZwjvRTwFdSUueO8IyjAiApUd5-gz5hZd-yNJvh990Xe0MvJr9WnVnN9ttM-fY37wrXbNVe" alt="Hero Avatar">
+            <img id="hero_avatar_img" src="assets/images/characters/hero.png" alt="Hero Avatar">
             <div id="avatarOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;"></div>
         </div>
 
@@ -11,68 +11,67 @@
             <div id="info_panel">
                 <div class="glass-panel info_card">
                     <span class="info_label">CURRENT VERSION</span>
-                    <span class="info_value">Java Edition 1.21.1</span>
+                    <span class="info_value" id="landing_info_version" style="display: flex; align-items: center; gap: 8px;">
+                        <div class="circle-loader" style="display: block; width: 16px; height: 16px; margin: 0; animation-duration: 2s;"></div>
+                        Loading...
+                    </span>
                     <div class="info_status"><span class="status_dot green animate-pulse"></span> Stable Release</div>
                 </div>
                 <div class="glass-panel info_card">
-                    <span class="info_label">LATEST NEWS</span>
-                    <span class="info_value">Bundles Update</span>
-                    <p class="info_desc">The latest version is now live on PotoGames!</p>
+                    <span class="info_label">MULTIPLAYER STATUS</span>
+                    <span class="info_value" id="landing_info_players" style="display: flex; align-items: center; gap: 8px;">
+                        <div class="circle-loader" style="display: block; width: 16px; height: 16px; margin: 0; animation-duration: 2s;"></div>
+                        Fetching players...
+                    </span>
+                    <!-- The description will contain the MOTD -->
+                    <p class="info_desc" id="landing_info_motd" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0.8; font-size: 11px;"></p>
                 </div>
             </div>
         </div>
 
         <div id="right">
             <div id="social_bar">
-                <div class="social_item glass-panel" id="social_discord"><span class="material-symbols-outlined">chat_bubble</span></div>
-                <div class="social_item glass-panel" id="social_x"><span class="material-symbols-outlined">share</span></div>
-                <div class="social_item glass-panel" id="social_youtube"><span class="material-symbols-outlined">videocam</span></div>
                 <div class="social_item glass-panel" id="settingsMediaButton"><span class="material-symbols-outlined">settings</span></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="lower">
-        <div id="center">
-            <div id="launch_content">
-                <button id="launch_button">
-                    <span class="material-symbols-outlined">play_arrow</span>
-                    <%- lang('landing.launchButton') %>
-                </button>
-                <div id="launch_details" style="display:none;">
-                    <progress id="launch_progress" value="0" max="100"></progress>
-                    <span id="launch_progress_label">0%</span>
-                    <div id="launch_details_right" style="display:none;"></div>
-                </div>
-                <div id="server_selection_button_wrapper" style="text-align: center; margin-bottom: 8px;">
-                    <span id="server_selection_button" style="cursor: pointer; font-size: 11px; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 20px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.05);">
-                        <%- lang('landing.selectedServer.loading') %>
-                    </span>
-                </div>
-                <p id="launch_subtext" style="text-align: center; font-size: 9px; font-weight: 800; color: rgba(255,140,46,0.6); margin-top: 5px; letter-spacing: 3px; cursor: default;">READY TO LAUNCH</p>
-            </div>
-            <div id="newsButton" style="display:none;"></div>
-            <div id="newsContainer" style="display:none;">
-                <div id="newsContent"></div>
-                <div id="newsErrorContainer">
-                    <div id="newsErrorLoading"><span id="nELoadSpan"></span></div>
-                    <div id="newsErrorFailed"><button id="newsErrorRetry"></button></div>
-                    <div id="newsErrorNone"></div>
-                </div>
             </div>
         </div>
     </div>
 
     <!-- Professional Footer -->
     <footer id="launcher_footer">
-        <div class="footer_section">
-            <span class="footer_label">LAUNCHER STATUS</span>
-            <span class="footer_value green"><span class="status_dot green"></span> ALL SYSTEMS OPERATIONAL</span>
+        <div style="display: flex; align-items: center; gap: 30px;">
+            <div class="footer_section">
+                <span class="footer_label">LAUNCHER STATUS</span>
+                <span class="footer_value green"><span class="status_dot green"></span> ALL SYSTEMS OPERATIONAL</span>
+            </div>
+            <div class="footer_divider"></div>
+            <div class="footer_section">
+                <span class="footer_label">USER SESSION</span>
+                <span class="footer_value" id="player_name_footer">Loading...</span>
+            </div>
         </div>
-        <div class="footer_divider"></div>
-        <div class="footer_section">
-            <span class="footer_label">USER SESSION</span>
-            <span class="footer_value" id="player_name_footer">Loading...</span>
+
+        <div id="launch_area_container" style="display: flex; flex-direction: column; align-items: flex-end;">
+            <div id="launch_content" style="display: flex; flex-direction: column; align-items: flex-end;">
+                <button id="launch_button">
+                    <span class="material-symbols-outlined">play_arrow</span>
+                    <%- lang('landing.launchButton') %>
+                </button>
+                <div id="server_selection_button_wrapper" style="text-align: right; margin-bottom: 0px; margin-top: 8px;">
+                    <span id="server_selection_button" style="cursor: pointer; font-size: 11px; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 20px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.05);">
+                        <%- lang('landing.selectedServer.loading') %>
+                    </span>
+                </div>
+                <p id="launch_subtext" style="text-align: right; font-size: 9px; font-weight: 800; color: rgba(255,140,46,0.6); margin-top: 5px; letter-spacing: 3px; cursor: default;">READY TO LAUNCH</p>
+            </div>
+
+            <div id="launch_details" style="display:none; flex-direction: column; width: 250px;">
+                <progress id="launch_progress" value="0" max="100" style="width: 100%;"></progress>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px; width: 100%;">
+                    <span id="launch_details_text" style="font-size: 10px; opacity: 0.8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">Preparing...</span>
+                    <span id="launch_progress_label" style="font-size: 10px; font-weight: bold;">0%</span>
+                </div>
+                <div id="launch_details_right" style="display:none;"></div>
+            </div>
         </div>
     </footer>
 

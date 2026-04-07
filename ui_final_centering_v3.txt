@@ -1,0 +1,45 @@
+﻿
+> potogames-launcher@2.2.1 start
+> electron . --no-sandbox
+
+
+node.exe : [25416:0405/2
+34544.140:ERROR:CONSOLE:
+1] "Request 
+Autofill.enable failed. 
+{"code":-32601,"message"
+:"'Autofill.enable' 
+wasn't found"}", 
+source: devtools://devto
+ols/bundled/core/protoco
+l_client/protocol_client
+.js (1)
+Au caractère Ligne:1 : 1
++ & "C:\Program 
+Files\nodejs/node.exe" "
+C:\Users\enzom\AppData\R
+oaming\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo      
+        : NotSpecified  
+  : ([25416:0405/234.   
+ ..l_client.js (1):S    
+tring) [], RemoteEx    
+ception
+    + FullyQualifiedErr 
+   orId : NativeComman  
+  dError
+ 
+[25416:0405/234544.140:E
+RROR:CONSOLE:1] 
+"Request 
+Autofill.setAddresses 
+failed. {"code":-32601,"
+message":"'Autofill.setA
+ddresses' wasn't 
+found"}", source: devtoo
+ls://devtools/bundled/co
+re/protocol_client/proto
+col_client.js (1)
