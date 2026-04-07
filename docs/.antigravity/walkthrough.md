@@ -17,3 +17,8 @@
 - [x] Exposed `onDistroRefresh` globally in `uibinder.js`.
 - [x] Implemented mandatory distribution refresh on Play button click in `landing.js`.
 - [x] Verified that launch feedback includes "Loading server information..." during refresh.
+
+## 2026-04-07: Phase 5 - Release v2.3.0
+- [x] Bumped version to `2.3.0` in `package.json`.
+- [ ] Built production binaries for Windows (NSIS).
+- [ ] Pushed version bump to GitHub.
