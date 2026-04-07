@@ -181,6 +181,7 @@ class ProcessBuilder {
         let fMods = []
         let lMods = []
 
+        // Resolve distribution mods.
         for(let mdl of mdls){
             const type = mdl.rawModule.type
             if(type === Type.ForgeMod || type === Type.LiteMod || type === Type.LiteLoader || type === Type.FabricMod){
@@ -199,6 +200,31 @@ class ProcessBuilder {
                         fMods.push(mdl)
                     } else {
                         lMods.push(mdl)
+                    }
+                }
+            }
+        }
+
+        // Resolve drop-in mods.
+        const modsDir = path.join(this.gameDir, 'mods')
+        if(fs.existsSync(modsDir)){
+            const modCandidates = fs.readdirSync(modsDir)
+            for(let file of modCandidates){
+                const fullPath = path.join(modsDir, file)
+                if(fs.lstatSync(fullPath).isFile() && !file.endsWith('.disabled')){
+                    if(file.endsWith('.jar') || file.endsWith('.litemod')){
+                        const isLitemod = file.endsWith('.litemod')
+                        const dummyMod = {
+                            getPath: () => fullPath,
+                            getExtensionlessMavenIdentifier: () => file.substring(0, file.lastIndexOf('.')),
+                            getRelativePath: () => file
+                        }
+
+                        if(isLitemod){
+                            lMods.push(dummyMod)
+                        } else {
+                            fMods.push(dummyMod)
+                        }
                     }
                 }
             }
@@ -305,7 +331,7 @@ class ProcessBuilder {
      */
     constructModList(mods) {
         const writeBuffer = mods.map(mod => {
-            return this.usingFabricLoader ? mod.getPath() : mod.getExtensionlessMavenIdentifier()
+            return (this.usingFabricLoader || !mod.rawModule) ? mod.getPath() : mod.getExtensionlessMavenIdentifier()
         }).join('\n')
 
         if(writeBuffer) {

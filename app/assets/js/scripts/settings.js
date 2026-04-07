@@ -9,6 +9,99 @@ const settingsState = {
     invalid: new Set()
 }
 
+/**
+ * Bind collapsible headers.
+ */
+function bindCollapsibleHeaders(){
+    const headers = document.getElementsByClassName('settingsCollapsibleHeader')
+    for(let i=0; i<headers.length; i++){
+        headers[i].onclick = (e) => {
+            const header = e.currentTarget
+            const container = header.parentElement
+            container.toggleAttribute('collapsed')
+        }
+    }
+}
+
+bindCollapsibleHeaders()
+
+/**
+ * Mods Search Logic
+ */
+let modsFuse = null
+
+function initModsSearch(){
+    const mods = []
+    
+    // Collect all mods from the DOM
+    const modElements = document.getElementsByClassName('settingsBaseMod')
+    for(let i=0; i<modElements.length; i++) {
+        const el = modElements[i]
+        const nameEl = el.getElementsByClassName('settingsModName')[0]
+        if(nameEl) {
+            mods.push({
+                el: el,
+                name: nameEl.innerText.trim(),
+                id: el.id
+            })
+        }
+    }
+    
+    // Initialize Fuse.js
+    if(typeof Fuse !== 'undefined') {
+        modsFuse = new Fuse(mods, {
+            keys: ['name'],
+            threshold: 0.3,
+            distance: 100
+        })
+    }
+    
+    const searchInput = document.getElementById('settingsModsSearch')
+    if(searchInput) {
+        searchInput.oninput = (e) => {
+            const query = e.target.value.trim()
+            if(query === '') {
+                // Show all
+                for(let i=0; i<modElements.length; i++) {
+                    modElements[i].style.display = ''
+                }
+                // Also show containers
+                const containers = document.getElementsByClassName('settingsCollapsibleContainer')
+                for(let i=0; i<containers.length; i++) containers[i].style.display = ''
+                return
+            }
+            
+            if(!modsFuse) return
+
+            const results = modsFuse.search(query)
+            const resultIds = new Set(results.map(r => r.item.id))
+            
+            for(let i=0; i<modElements.length; i++) {
+                const el = modElements[i]
+                if(resultIds.has(el.id)) {
+                    el.style.display = ''
+                } else {
+                    el.style.display = 'none'
+                }
+            }
+            
+            // Hide empty categories and handle visibility
+            const containers = document.getElementsByClassName('settingsCollapsibleContainer')
+            for(let i=0; i<containers.length; i++) {
+                const container = containers[i]
+                const content = container.getElementsByClassName('settingsCollapsibleContent')[0]
+                const visibleMods = content.querySelectorAll('.settingsBaseMod:not([style*="display: none"])')
+                if(visibleMods.length === 0) {
+                    container.style.display = 'none'
+                } else {
+                    container.style.display = ''
+                    container.removeAttribute('collapsed')
+                }
+            }
+        }
+    }
+}
+
 function bindSettingsSelect(){
     for(let ele of document.getElementsByClassName('settingsSelectContainer')) {
         const selectedDiv = ele.getElementsByClassName('settingsSelectSelected')[0]
@@ -733,6 +826,8 @@ async function resolveModsForUI(){
 
     document.getElementById('settingsReqModsContent').innerHTML = modStr.reqMods
     document.getElementById('settingsOptModsContent').innerHTML = modStr.optMods
+
+    initModsSearch()
 }
 
 /**
@@ -871,31 +966,34 @@ let CACHE_DROPIN_MODS
 async function resolveDropinModsForUI(){
     const serv = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
     CACHE_SETTINGS_MODS_DIR = path.join(ConfigManager.getInstanceDirectory(), serv.rawServer.id, 'mods')
-    CACHE_DROPIN_MODS = DropinModUtil.scanForDropinMods(CACHE_SETTINGS_MODS_DIR, serv.rawServer.minecraftVersion)
-
+    const officialMods = serv.modules.filter(m => m.rawModule.type === 'ForgeMod' || m.rawModule.type === 'FabricMod' || m.rawModule.type === 'LiteMod').map(m => path.basename(m.getPath()))
+    CACHE_DROPIN_MODS = DropinModUtil.scanForDropinMods(CACHE_SETTINGS_MODS_DIR, serv.rawServer.minecraftVersion, officialMods)
+    
     let dropinMods = ''
-
-    for(dropin of CACHE_DROPIN_MODS){
+    for(let i=0; i<CACHE_DROPIN_MODS.length; i++){
+        const dropin = CACHE_DROPIN_MODS[i]
         dropinMods += `<div id="${dropin.fullName}" class="settingsBaseMod settingsDropinMod" ${!dropin.disabled ? 'enabled' : ''}>
                     <div class="settingsModContent">
                         <div class="settingsModMainWrapper">
                             <div class="settingsModStatus"></div>
                             <div class="settingsModDetails">
                                 <span class="settingsModName">${dropin.name}</span>
-                                <div class="settingsDropinRemoveWrapper">
-                                    <button class="settingsDropinRemoveButton" remmod="${dropin.fullName}">${Lang.queryJS('settings.dropinMods.removeButton')}</button>
-                                </div>
                             </div>
                         </div>
-                        <label class="toggleSwitch">
-                            <input type="checkbox" formod="${dropin.fullName}" dropin ${!dropin.disabled ? 'checked' : ''}>
-                            <span class="toggleSwitchSlider"></span>
-                        </label>
+                        <div class="settingsDropinModActions">
+                            <button class="settingsDropinRemoveButton" remmod="${dropin.fullName}">${Lang.queryJS('settings.dropinMods.removeButton')}</button>
+                            <label class="toggleSwitch">
+                                <input type="checkbox" formod="${dropin.fullName}" dropin ${!dropin.disabled ? 'checked' : ''}>
+                                <span class="toggleSwitchSlider"></span>
+                            </label>
+                        </div>
                     </div>
                 </div>`
     }
 
-    document.getElementById('settingsDropinModsContent').innerHTML = dropinMods
+    document.getElementById('settingsDropinModsList').innerHTML = dropinMods
+
+    initModsSearch()
 }
 
 /**
@@ -957,26 +1055,28 @@ function bindDropinModFileSystemButton(){
  * Save drop-in mod states. Enabling and disabling is just a matter
  * of adding/removing the .disabled extension.
  */
-function saveDropinModConfiguration(){
-    for(dropin of CACHE_DROPIN_MODS){
+async function saveDropinModConfiguration(){
+    const promises = []
+    for(const dropin of CACHE_DROPIN_MODS){
         const dropinUI = document.getElementById(dropin.fullName)
         if(dropinUI != null){
             const dropinUIEnabled = dropinUI.hasAttribute('enabled')
             if(DropinModUtil.isDropinModEnabled(dropin.fullName) != dropinUIEnabled){
-                DropinModUtil.toggleDropinMod(CACHE_SETTINGS_MODS_DIR, dropin.fullName, dropinUIEnabled).catch(err => {
-                    if(!isOverlayVisible()){
+                promises.push(DropinModUtil.toggleDropinMod(CACHE_SETTINGS_MODS_DIR, dropin.fullName, dropinUIEnabled).catch(err => {
+                    if(!isDisplayableError(err)){
+                        loggerSettings.error('Error while toggling dropin mod.', err)
                         setOverlayContent(
                             Lang.queryJS('settings.dropinMods.failedToggleTitle'),
                             err.message,
-                            Lang.queryJS('settings.dropinMods.okButton')
+                            Lang.queryJS('settings.dropinMods.failedToggleClose')
                         )
-                        setOverlayHandler(null)
                         toggleOverlay(true)
                     }
-                })
+                }))
             }
         }
     }
+    await Promise.all(promises)
 }
 
 // Refresh the drop-in mods when F5 is pressed.

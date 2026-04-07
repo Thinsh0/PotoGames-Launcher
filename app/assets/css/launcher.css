@@ -1886,6 +1886,81 @@ input:checked+.toggleSwitchSlider:before {
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s ease;
+}
+
+.settingsModsHeader:hover {
+    opacity: 0.8;
+}
+
+.settingsCollapsibleIcon {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+    margin-right: 5px;
+}
+
+.settingsCollapsibleContainer[collapsed] .settingsCollapsibleIcon {
+    transform: rotate(-90deg);
+}
+
+.settingsDropinModActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.settingsDropinRemoveButton {
+    background: rgba(255, 68, 68, 0.15);
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    color: #ff4444;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.settingsDropinRemoveButton:hover {
+    background: rgba(255, 68, 68, 0.4);
+    border-color: #ff4444;
+}
+
+.settingsCollapsibleContainer[collapsed] .settingsCollapsibleContent {
+    display: none;
+}
+
+#settingsModsSearchContainer {
+    width: 75%;
+    margin-bottom: 20px;
+}
+
+#settingsModsSearch {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+    padding: 12px 20px;
+    border-radius: 12px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#settingsModsSearch:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+#settingsModsSearch::placeholder {
+    color: rgba(255, 255, 255, 0.4);
 }
 
 /* Mod elements sub-containers. */

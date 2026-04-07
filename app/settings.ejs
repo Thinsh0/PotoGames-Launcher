@@ -127,24 +127,36 @@
                     </div>
                 </div>
             </div>
+            <div id="settingsModsSearchContainer">
+                <input type="text" id="settingsModsSearch" placeholder="Rechercher un mod..." />
+            </div>
             <div id="settingsModsContainer">
-                <div id="settingsReqModsContainer">
-                    <div class="settingsModsHeader"><%- lang('settings.requiredMods') %></div>
-                    <div id="settingsReqModsContent">
+                <div id="settingsReqModsContainer" class="settingsCollapsibleContainer">
+                    <div class="settingsModsHeader settingsCollapsibleHeader" target="settingsReqModsContent">
+                        <span><%- lang('settings.requiredMods') %></span>
+                        <span class="settingsCollapsibleIcon">▼</span>
+                    </div>
+                    <div id="settingsReqModsContent" class="settingsCollapsibleContent">
 
                     </div>
                 </div>
-                <div id="settingsOptModsContainer">
-                    <div class="settingsModsHeader"><%- lang('settings.optionalMods') %></div>
-                    <div id="settingsOptModsContent">
+                <div id="settingsOptModsContainer" class="settingsCollapsibleContainer">
+                    <div class="settingsModsHeader settingsCollapsibleHeader" target="settingsOptModsContent">
+                        <span><%- lang('settings.optionalMods') %></span>
+                        <span class="settingsCollapsibleIcon">▼</span>
+                    </div>
+                    <div id="settingsOptModsContent" class="settingsCollapsibleContent">
                         
                     </div>
                 </div>
-                <div id="settingsDropinModsContainer">
-                    <div class="settingsModsHeader"><%- lang('settings.dropinMods') %></div>
-                    <button id="settingsDropinFileSystemButton"><%- lang('settings.addMods') %> <span id="settingsDropinRefreshNote"><%- lang('settings.dropinRefreshNote') %></span></button>
-                    <div id="settingsDropinModsContent">
-                        
+                <div id="settingsDropinModsContainer" class="settingsCollapsibleContainer">
+                    <div class="settingsModsHeader settingsCollapsibleHeader" target="settingsDropinModsContent">
+                        <span><%- lang('settings.dropinMods') %></span>
+                        <span class="settingsCollapsibleIcon">▼</span>
+                    </div>
+                    <div id="settingsDropinModsContent" class="settingsCollapsibleContent">
+                        <button id="settingsDropinFileSystemButton"><%- lang('settings.addMods') %> <span id="settingsDropinRefreshNote"><%- lang('settings.dropinRefreshNote') %></span></button>
+                        <div id="settingsDropinModsList"></div>
                     </div>
                 </div>
                 <div id="settingsShadersContainer">
@@ -384,5 +396,6 @@
             </div>
         </div>
     </div>
+    <script src="./assets/js/fuse.min.js"></script>
     <script src="./assets/js/scripts/settings.js"></script>
 </div>

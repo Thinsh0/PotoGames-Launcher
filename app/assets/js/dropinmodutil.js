@@ -34,38 +34,47 @@ exports.validateDir = function(dir) {
  * @returns {{fullName: string, name: string, ext: string, disabled: boolean}[]}
  * An array of objects storing metadata about each discovered mod.
  */
-exports.scanForDropinMods = function(modsDir, version) {
+exports.scanForDropinMods = function(modsDir, version, blacklist = []) {
     const modsDiscovered = []
     if(fs.existsSync(modsDir)){
-        let modCandidates = fs.readdirSync(modsDir)
+        const modCandidates = fs.readdirSync(modsDir)
         let verCandidates = []
         const versionDir = path.join(modsDir, version)
         if(fs.existsSync(versionDir)){
             verCandidates = fs.readdirSync(versionDir)
         }
+
         for(let file of modCandidates){
-            const match = MOD_REGEX.exec(file)
-            if(match != null){
-                modsDiscovered.push({
-                    fullName: match[0],
-                    name: match[1],
-                    ext: match[2],
-                    disabled: match[3] != null
-                })
+            const fullPath = path.join(modsDir, file)
+            if(fs.lstatSync(fullPath).isFile()) {
+                const match = MOD_REGEX.exec(file)
+                if(match != null && !blacklist.includes(file)) {
+                    modsDiscovered.push({
+                        fullName: match[0],
+                        name: match[1],
+                        ext: match[2],
+                        disabled: match[3] != null
+                    })
+                }
             }
         }
+
         for(let file of verCandidates){
-            const match = MOD_REGEX.exec(file)
-            if(match != null){
-                modsDiscovered.push({
-                    fullName: path.join(version, match[0]),
-                    name: match[1],
-                    ext: match[2],
-                    disabled: match[3] != null
-                })
+            const fullPath = path.join(versionDir, file)
+            if(fs.lstatSync(fullPath).isFile()) {
+                const match = MOD_REGEX.exec(file)
+                if(match != null && !blacklist.includes(file)) {
+                    modsDiscovered.push({
+                        fullName: path.join(version, match[0]),
+                        name: match[1],
+                        ext: match[2],
+                        disabled: match[3] != null
+                    })
+                }
             }
         }
     }
+
     return modsDiscovered
 }
 
@@ -80,8 +89,8 @@ exports.addDropinMods = function(files, modsdir) {
     exports.validateDir(modsdir)
 
     for(let f of files) {
-        if(MOD_REGEX.exec(f.name) != null) {
-            fs.moveSync(f.path, path.join(modsdir, f.name))
+        if(fs.lstatSync(f.path).isFile() && MOD_REGEX.exec(f.name) != null) {
+            fs.copySync(f.path, path.join(modsdir, f.name))
         }
     }
 
