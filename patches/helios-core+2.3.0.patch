@@ -1,3 +1,22 @@
+diff --git a/node_modules/helios-core/dist/common/rest/RestResponse.js b/node_modules/helios-core/dist/common/rest/RestResponse.js
+index 74dde57..1a3100d 100644
+--- a/node_modules/helios-core/dist/common/rest/RestResponse.js
++++ b/node_modules/helios-core/dist/common/rest/RestResponse.js
+@@ -44,7 +44,13 @@ function handleGotError(operation, error, logger, dataProvider) {
+         logger.error(`Error during ${operation} request (HTTP Response ${error.response.statusCode})`, error);
+         logger.debug('Response Details:');
+         logger.debug(`URL: ${error.request.requestUrl}`);
+-        logger.debug('Body:', error.response.body);
++        if (error.response.body != null) {
++            let body = `${error.response.body}`;
++            if (body.length > 500) {
++                body = body.substring(0, 500) + '... (truncated)';
++            }
++            logger.debug('Body:', body);
++        }
+         logger.debug('Headers:', error.response.headers);
+     }
+     else if (error.name === 'RequestError') {
 diff --git a/node_modules/helios-core/dist/dl/DownloadEngine.js b/node_modules/helios-core/dist/dl/DownloadEngine.js
 index 922cd1a..14edf00 100644
 --- a/node_modules/helios-core/dist/dl/DownloadEngine.js
