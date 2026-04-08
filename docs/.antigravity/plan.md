@@ -25,4 +25,8 @@
 - [x] Visual verification of logo in Frame (frame.ejs).
 - [x] Fix missing shell icons (Start Menu, Taskbar) by generating `build/icon.ico` and `build/icon.png`.
 - [x] Update `index.js` to use high-resolution assets for the application window.
-- [x] Regenerate final Windows and Linux ZIP artifacts.
+- [x] Audit and fix "Drop-in Mods" loading system for v2.3.0.
+    - [x] Root cause identified: `ProcessBuilder` was missing the version-specific subdirectory scan (e.g., `mods/1.20.1`) that the UI uses.
+    - [x] Fix applied: Updated `ProcessBuilder.js` to recursively scan version subfolders and added `.zip` support.
+- [x] Re-export final Windows and Linux ZIP artifacts.
+- [ ] Final verification of distribution build.

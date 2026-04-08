@@ -208,16 +208,22 @@ class ProcessBuilder {
         // Resolve drop-in mods.
         const modsDir = path.join(this.gameDir, 'mods')
         if(fs.existsSync(modsDir)){
-            const modCandidates = fs.readdirSync(modsDir)
-            for(let file of modCandidates){
-                const fullPath = path.join(modsDir, file)
-                if(fs.lstatSync(fullPath).isFile() && !file.endsWith('.disabled')){
-                    if(file.endsWith('.jar') || file.endsWith('.litemod')){
-                        const isLitemod = file.endsWith('.litemod')
+            let modCandidates = fs.readdirSync(modsDir).map(f => ({ path: path.join(modsDir, f), file: f }))
+
+            const versionDir = path.join(modsDir, this.server.rawServer.minecraftVersion)
+            if(fs.existsSync(versionDir)){
+                const verCandidates = fs.readdirSync(versionDir).map(f => ({ path: path.join(versionDir, f), file: f }))
+                modCandidates = modCandidates.concat(verCandidates)
+            }
+
+            for(let scan of modCandidates){
+                if(fs.lstatSync(scan.path).isFile() && !scan.file.endsWith('.disabled')){
+                    if(scan.file.endsWith('.jar') || scan.file.endsWith('.litemod') || scan.file.endsWith('.zip')){
+                        const isLitemod = scan.file.endsWith('.litemod')
                         const dummyMod = {
-                            getPath: () => fullPath,
-                            getExtensionlessMavenIdentifier: () => file.substring(0, file.lastIndexOf('.')),
-                            getRelativePath: () => file
+                            getPath: () => scan.path,
+                            getExtensionlessMavenIdentifier: () => scan.file.substring(0, scan.file.lastIndexOf('.')),
+                            getRelativePath: () => scan.file
                         }
 
                         if(isLitemod){

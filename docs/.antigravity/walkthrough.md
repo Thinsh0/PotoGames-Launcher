@@ -14,3 +14,7 @@
 - [x] **2026-04-08 17:30**: Generated high-resolution `icon.ico` and `icon.png` in the `build/` directory using `png-to-ico`.
 - [x] **2026-04-08 17:31**: Updated `index.js` to ensure the running application uses high-res `.ico` (Windows) and `.png` (Linux) in the taskbar.
 - [x] **2026-04-08 17:34**: Re-exported and zipped the fixed launcher versions for Windows and Linux.
+- [x] **2026-04-08 17:55**: Audited `ProcessBuilder.js` and `DropinModUtil.js` for "Drop-in Mods" loading issue.
+- [x] **2026-04-08 18:00**: Identified that `ProcessBuilder` did not scan version-specific subfolders (`mods/${version}`).
+- [x] **2026-04-08 18:05**: Applied fix to `ProcessBuilder.js` to include recursive scan and `.zip` support.
+- [x] **2026-04-08 18:10**: Final rebuild and re-export of distribution packages with mod fix and branding fix.
