@@ -22,4 +22,7 @@
 ## Verification
 - [ ] Visual verification of logo on Startup (app.ejs).
 - [ ] Visual verification of logo on Landing Page (landing.ejs).
-- [ ] Visual verification of logo in Frame (frame.ejs).
+- [x] Visual verification of logo in Frame (frame.ejs).
+- [x] Fix missing shell icons (Start Menu, Taskbar) by generating `build/icon.ico` and `build/icon.png`.
+- [x] Update `index.js` to use high-resolution assets for the application window.
+- [x] Regenerate final Windows and Linux ZIP artifacts.

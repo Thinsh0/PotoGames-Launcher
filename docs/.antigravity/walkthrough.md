@@ -11,3 +11,6 @@
 - [x] **2026-04-08 17:08**: Restored logo to `landing.ejs` and added branding to `frame.ejs`.
 - [x] **2026-04-08 17:10**: Implemented new CSS rules in `launcher.css` for the restored logo elements.
 - [x] **2026-04-08 17:12**: Verified and standardized logo references across all application views.
+- [x] **2026-04-08 17:30**: Generated high-resolution `icon.ico` and `icon.png` in the `build/` directory using `png-to-ico`.
+- [x] **2026-04-08 17:31**: Updated `index.js` to ensure the running application uses high-res `.ico` (Windows) and `.png` (Linux) in the taskbar.
+- [x] **2026-04-08 17:34**: Re-exported and zipped the fixed launcher versions for Windows and Linux.

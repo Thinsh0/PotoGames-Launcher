@@ -256,7 +256,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 980,
         height: 552,
-        icon: getPlatformIcon('logo_small'),
+        icon: getPlatformIcon('logo'),
         frame: false,
         transparent: true,
         backgroundColor: '#00000000',
@@ -359,7 +359,11 @@ function createMenu() {
 function getPlatformIcon(filename){
     let ext
     if (filename === 'logo_small' || filename === 'logo') {
-        ext = 'png'
+        if (process.platform === 'win32') {
+            ext = 'ico'
+        } else {
+            ext = 'png'
+        }
     } else {
         switch(process.platform) {
             case 'win32':
