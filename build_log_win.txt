@@ -1,0 +1,368 @@
+﻿  ÔÇó electron-builder  version=26.8.1 os=10.0.26200
+  ÔÇó loaded configuration  file=D:\Devs\Minecraft\PotoGames Launcher\Helios\electron-builder.yml
+  ÔÇó effective config  config=directories:
+  output: dist
+  buildResources: build
+appId: potogameslauncher
+productName: PotoGames Launcher
+artifactName: ${productName}-setup-${version}.${ext}
+publish:
+  provider: github
+  owner: Thinsh0
+  repo: PotoGames-Launcher
+copyright: Copyright ┬® 2026 PotoGames
+asar: true
+compression: maximum
+files:
+  - filter:
+      - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs}'
+extraResources:
+  - filter:
+      - libraries
+win:
+  target:
+    - target: nsis
+      arch: x64
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+mac:
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+  artifactName: ${productName}-setup-${version}-${arch}.${ext}
+  category: public.app-category.games
+linux:
+  target:
+    - target: AppImage
+      arch: x64
+  artifactName: ${productName}-${version}.${ext}
+  maintainer: PotoGames
+  vendor: PotoGames
+  synopsis: PotoGames Minecraft Launcher
+  description: The official launcher for PotoGames players, providing automatic access to custom modpacks and server connection.
+  category: Game
+
+  ÔÇó no event listeners found  event=beforePack
+  ÔÇó spawning        command=npm prefix -w cwd=D:\Devs\Minecraft\PotoGames Launcher\Helios
+  ÔÇó exited          command=npm code=1 pid=26848
+  ÔÇó executing @electron/rebuild  electronVersion=39.2.7 arch=x64 buildFromSource=false workspaceRoot=D:\Devs\Minecraft\PotoGames Launcher\Helios projectDir=./ appDir=./
+  ÔÇó installing native dependencies  arch=x64
+  ÔÇó completed installing native dependencies
+  ÔÇó packaging       platform=win32 arch=x64 electron=39.2.7 appOutDir=dist\win-unpacked
+  ÔÇó no custom electronDist provided, unpacking default Electron distribution
+  ÔÇó spawning        command=D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\app-builder-bin\win\x64\app-builder.exe unpack-electron --configuration [{"platform":"win32","arch":"x64","version":"39.2.7"}] --output D:\Devs\Minecraft\PotoGames Launcher\Helios\dist\win-unpacked --distMacOsAppName Electron.app
+  ÔÇó map async       taskCount=2
+  ÔÇó map async       taskCount=1
+  ÔÇó map async       taskCount=75
+  ÔÇó exited          command=app-builder.exe code=0 pid=36164
+  ÔÇó no event listeners found  event=afterExtract
+  ÔÇó searching for node modules  pm=npm searchDir=D:\Devs\Minecraft\PotoGames Launcher\Helios
+node.exe : (node:7704) [DEP0190] 
+DeprecationWarning: Passing args to a 
+child process with shell option true can 
+lead to security vulnerabilities, as the 
+arguments are not escaped, only 
+concatenated.
+Au caractère Ligne:1 : 1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Users\enzom\AppData\Roaming\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecifi 
+   ed: ((node:7704) [DE...y concatenate  
+  d.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeComm 
+   andError
+ 
+(Use `node --trace-deprecation ...` to 
+show where the warning was created)
+  ÔÇó node modules collection complete  packageName=potogames-launcher depCount=114
+  ÔÇó collected node modules  pm=npm nodeModules=[{"name":"@colors/colors","version":"1.6.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@colors\\colors"},{"name":"@dabh/diagnostics","version":"2.0.8","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@dabh\\diagnostics"},{"name":"@electron/remote","version":"2.1.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@electron\\remote"},{"name":"@sindresorhus/is","version":"4.6.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@sindresorhus\\is"},{"name":"@so-ric/colorspace","version":"1.1.6","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@so-ric\\colorspace"},{"name":"@szmarczak/http-timer","version":"4.0.6","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@szmarczak\\http-timer"},{"name":"@types/cacheable-request","version":"6.0.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@types\\cacheable-request"},{"name":"@types/http-cache-semantics","version":"4.0.4","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@types\\http-cache-semantics"},{"name":"@types/keyv","version":"3.1.4","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@types\\keyv"},{"name":"@types/node","version":"22.19.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@types\\node"},{"name":"@types/responselike","version":"1.0.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@types\\responselike"},{"name":"@types/triple-beam","version":"1.3.5","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\@types\\triple-beam"},{"name":"adm-zip","version":"0.5.16","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\adm-zip"},{"name":"argparse","version":"2.0.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\argparse"},{"name":"async","version":"3.2.6","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\async"},{"name":"b4a","version":"1.7.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\b4a"},{"name":"balanced-match","version":"1.0.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\balanced-match"},{"name":"bare-events","version":"2.8.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\bare-events"},{"name":"bare-fs","version":"4.5.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\bare-fs"},{"name":"bare-os","version":"3.6.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\bare-os"},{"name":"bare-path","version":"3.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\bare-path"},{"name":"bare-stream","version":"2.7.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\bare-stream"},{"name":"bare-url","version":"2.3.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\bare-url"},{"name":"brace-expansion","version":"2.0.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\filelist\\node_modules\\brace-expansion"},{"name":"builder-util-runtime","version":"9.5.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\builder-util-runtime"},{"name":"cacheable-lookup","version":"5.0.4","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\cacheable-lookup"},{"name":"cacheable-request","version":"7.0.4","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\cacheable-request"},{"name":"clone-response","version":"1.0.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\clone-response"},{"name":"color","version":"5.0.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\color"},{"name":"color-convert","version":"3.1.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\color\\node_modules\\color-convert"},{"name":"color-name","version":"2.1.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\color-string\\node_modules\\color-name"},{"name":"color-string","version":"2.1.4","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\color-string"},{"name":"debug","version":"4.4.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\debug"},{"name":"decompress-response","version":"6.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\decompress-response","dependencies":[{"name":"mimic-response","version":"3.1.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\decompress-response\\node_modules\\mimic-response"}]},{"name":"defer-to-connect","version":"2.0.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\defer-to-connect"},{"name":"discord-rpc-patch","version":"4.0.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\discord-rpc-patch"},{"name":"ejs","version":"3.1.10","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\ejs"},{"name":"ejs-electron","version":"3.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\ejs-electron"},{"name":"electron-updater","version":"6.7.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\electron-updater","dependencies":[{"name":"fs-extra","version":"10.1.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\electron-updater\\node_modules\\fs-extra"}]},{"name":"enabled","version":"2.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\enabled"},{"name":"end-of-stream","version":"1.4.5","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\end-of-stream"},{"name":"events-universal","version":"1.0.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\events-universal"},{"name":"fast-fifo","version":"1.3.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\fast-fifo"},{"name":"fastq","version":"1.20.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\fastq"},{"name":"fecha","version":"4.2.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\fecha"},{"name":"filelist","version":"1.0.4","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\filelist"},{"name":"fn.name","version":"1.1.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\fn.name"},{"name":"fs-extra","version":"11.3.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\fs-extra"},{"name":"get-stream","version":"5.2.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\get-stream"},{"name":"github-syntax-dark","version":"0.5.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\github-syntax-dark"},{"name":"got","version":"11.8.6","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\got"},{"name":"graceful-fs","version":"4.2.11","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\graceful-fs"},{"name":"helios-core","version":"2.3.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\helios-core"},{"name":"helios-distribution-types","version":"1.3.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\helios-distribution-types"},{"name":"http-cache-semantics","version":"4.2.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\http-cache-semantics"},{"name":"http2-wrapper","version":"1.0.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\http2-wrapper"},{"name":"inherits","version":"2.0.4","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\inherits"},{"name":"is-stream","version":"2.0.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\is-stream"},{"name":"jake","version":"10.9.4","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\jake"},{"name":"jquery","version":"3.7.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\jquery"},{"name":"js-yaml","version":"4.1.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\js-yaml"},{"name":"json-buffer","version":"3.0.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\json-buffer"},{"name":"jsonfile","version":"6.2.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\jsonfile"},{"name":"keyv","version":"4.5.4","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\keyv"},{"name":"kuler","version":"2.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\kuler"},{"name":"lazy-val","version":"1.0.5","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\lazy-val"},{"name":"lodash.escaperegexp","version":"4.1.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\lodash.escaperegexp"},{"name":"lodash.isequal","version":"4.5.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\lodash.isequal"},{"name":"lodash.merge","version":"4.6.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\lodash.merge"},{"name":"logform","version":"2.7.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\logform"},{"name":"lowercase-keys","version":"2.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\lowercase-keys"},{"name":"luxon","version":"3.7.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\luxon"},{"name":"mime","version":"3.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\mime"},{"name":"mimic-response","version":"1.0.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\mimic-response"},{"name":"minimatch","version":"5.1.6","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\filelist\\node_modules\\minimatch"},{"name":"ms","version":"2.1.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\ms"},{"name":"node-fetch","version":"2.7.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\node-fetch"},{"name":"node-stream-zip","version":"1.15.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\node-stream-zip"},{"name":"normalize-url","version":"6.1.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\normalize-url"},{"name":"once","version":"1.4.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\once"},{"name":"one-time","version":"1.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\one-time"},{"name":"p-cancelable","version":"2.1.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\p-cancelable"},{"name":"picocolors","version":"1.1.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\picocolors"},{"name":"pump","version":"3.0.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\pump"},{"name":"quick-lru","version":"5.1.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\quick-lru"},{"name":"readable-stream","version":"3.6.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\readable-stream"},{"name":"resolve-alpn","version":"1.2.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\resolve-alpn"},{"name":"responselike","version":"2.0.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\responselike"},{"name":"reusify","version":"1.1.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\reusify"},{"name":"safe-buffer","version":"5.2.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\safe-buffer"},{"name":"safe-stable-stringify","version":"2.5.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\safe-stable-stringify"},{"name":"sax","version":"1.4.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\sax"},{"name":"semver","version":"7.7.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\semver"},{"name":"stack-trace","version":"0.0.10","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\stack-trace"},{"name":"streamx","version":"2.23.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\streamx"},{"name":"string_decoder","version":"1.3.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\string_decoder"},{"name":"tar-fs","version":"3.1.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\tar-fs"},{"name":"tar-stream","version":"3.1.7","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\tar-stream"},{"name":"text-decoder","version":"1.2.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\text-decoder"},{"name":"text-hex","version":"1.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\text-hex"},{"name":"tiny-typed-emitter","version":"2.1.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\tiny-typed-emitter"},{"name":"toml","version":"3.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\toml"},{"name":"tr46","version":"0.0.3","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\tr46"},{"name":"triple-beam","version":"1.4.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\triple-beam"},{"name":"undici-types","version":"6.21.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\undici-types"},{"name":"universalify","version":"2.0.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\universalify"},{"name":"util-deprecate","version":"1.0.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\util-deprecate"},{"name":"webidl-conversions","version":"3.0.1","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\webidl-conversions"},{"name":"whatwg-url","version":"5.0.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\whatwg-url"},{"name":"winreg","version":"1.2.5","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\winreg"},{"name":"winston","version":"3.19.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\winston"},{"name":"winston-transport","version":"4.9.0","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\winston-transport"},{"name":"wrappy","version":"1.0.2","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\wrappy"},{"name":"ws","version":"7.5.10","dir":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\node_modules\\ws"}]
+  ÔÇó duplicate dependency references  dependencies=["debug@4.4.3","got@11.8.6","debug@4.4.3","@types/node@22.19.3","debug@4.4.3","get-stream@5.2.0","ejs@3.1.10","jsonfile@6.2.0","@types/node@22.19.3","@types/node@22.19.3","@types/responselike@1.0.3","@types/node@22.19.3","pump@3.0.3","responselike@2.0.1","fs-extra@11.3.3","got@11.8.6","bare-path@3.0.0","streamx@2.23.0","bare-path@3.0.0","once@1.4.0","logform@2.7.0","readable-stream@3.6.2"]
+  ÔÇó identified module  dep=@colors/colors from=node_modules\@colors\colors to=dist\win-unpacked\resources\app\node_modules\@colors\colors filesCount=16
+  ÔÇó identified module  dep=@dabh/diagnostics from=node_modules\@dabh\diagnostics to=dist\win-unpacked\resources\app\node_modules\@dabh\diagnostics filesCount=18
+  ÔÇó identified module  dep=@electron/remote from=node_modules\@electron\remote to=dist\win-unpacked\resources\app\node_modules\@electron\remote filesCount=14
+  ÔÇó identified module  dep=@sindresorhus/is from=node_modules\@sindresorhus\is to=dist\win-unpacked\resources\app\node_modules\@sindresorhus\is filesCount=4
+  ÔÇó identified module  dep=@so-ric/colorspace from=node_modules\@so-ric\colorspace to=dist\win-unpacked\resources\app\node_modules\@so-ric\colorspace filesCount=5
+  ÔÇó identified module  dep=@szmarczak/http-timer from=node_modules\@szmarczak\http-timer to=dist\win-unpacked\resources\app\node_modules\@szmarczak\http-timer filesCount=3
+  ÔÇó identified module  dep=@types/cacheable-request from=node_modules\@types\cacheable-request to=dist\win-unpacked\resources\app\node_modules\@types\cacheable-request filesCount=2
+  ÔÇó identified module  dep=@types/http-cache-semantics from=node_modules\@types\http-cache-semantics to=dist\win-unpacked\resources\app\node_modules\@types\http-cache-semantics filesCount=2
+  ÔÇó identified module  dep=@types/keyv from=node_modules\@types\keyv to=dist\win-unpacked\resources\app\node_modules\@types\keyv filesCount=2
+  ÔÇó identified module  dep=@types/node from=node_modules\@types\node to=dist\win-unpacked\resources\app\node_modules\@types\node filesCount=2
+  ÔÇó identified module  dep=@types/responselike from=node_modules\@types\responselike to=dist\win-unpacked\resources\app\node_modules\@types\responselike filesCount=2
+  ÔÇó identified module  dep=@types/triple-beam from=node_modules\@types\triple-beam to=dist\win-unpacked\resources\app\node_modules\@types\triple-beam filesCount=2
+  ÔÇó identified module  dep=adm-zip from=node_modules\adm-zip to=dist\win-unpacked\resources\app\node_modules\adm-zip filesCount=18
+  ÔÇó identified module  dep=argparse from=node_modules\argparse to=dist\win-unpacked\resources\app\node_modules\argparse filesCount=5
+  ÔÇó identified module  dep=async from=node_modules\async to=dist\win-unpacked\resources\app\node_modules\async filesCount=135
+  ÔÇó identified module  dep=b4a from=node_modules\b4a to=dist\win-unpacked\resources\app\node_modules\b4a filesCount=10
+  ÔÇó identified module  dep=balanced-match from=node_modules\balanced-match to=dist\win-unpacked\resources\app\node_modules\balanced-match filesCount=3
+  ÔÇó identified module  dep=bare-events from=node_modules\bare-events to=dist\win-unpacked\resources\app\node_modules\bare-events filesCount=6
+  ÔÇó identified module  dep=bare-fs from=node_modules\bare-fs to=dist\win-unpacked\resources\app\node_modules\bare-fs filesCount=22
+  ÔÇó identified module  dep=bare-os from=node_modules\bare-os to=dist\win-unpacked\resources\app\node_modules\bare-os filesCount=21
+  ÔÇó identified module  dep=bare-path from=node_modules\bare-path to=dist\win-unpacked\resources\app\node_modules\bare-path filesCount=8
+  ÔÇó identified module  dep=bare-stream from=node_modules\bare-stream to=dist\win-unpacked\resources\app\node_modules\bare-stream filesCount=6
+  ÔÇó identified module  dep=bare-url from=node_modules\bare-url to=dist\win-unpacked\resources\app\node_modules\bare-url filesCount=22
+  ÔÇó identified module  dep=brace-expansion from=node_modules\filelist\node_modules\brace-expansion to=dist\win-unpacked\resources\app\node_modules\brace-expansion filesCount=3
+  ÔÇó identified module  dep=builder-util-runtime from=node_modules\builder-util-runtime to=dist\win-unpacked\resources\app\node_modules\builder-util-runtime filesCount=28
+  ÔÇó identified module  dep=cacheable-lookup from=node_modules\cacheable-lookup to=dist\win-unpacked\resources\app\node_modules\cacheable-lookup filesCount=3
+  ÔÇó identified module  dep=cacheable-request from=node_modules\cacheable-request to=dist\win-unpacked\resources\app\node_modules\cacheable-request filesCount=3
+  ÔÇó identified module  dep=clone-response from=node_modules\clone-response to=dist\win-unpacked\resources\app\node_modules\clone-response filesCount=3
+  ÔÇó identified module  dep=color from=node_modules\color to=dist\win-unpacked\resources\app\node_modules\color filesCount=3
+  ÔÇó identified module  dep=color-convert from=node_modules\color\node_modules\color-convert to=dist\win-unpacked\resources\app\node_modules\color-convert filesCount=5
+  ÔÇó identified module  dep=color-name from=node_modules\color-string\node_modules\color-name to=dist\win-unpacked\resources\app\node_modules\color-name filesCount=3
+  ÔÇó identified module  dep=color-string from=node_modules\color-string to=dist\win-unpacked\resources\app\node_modules\color-string filesCount=3
+  ÔÇó identified module  dep=debug from=node_modules\debug to=dist\win-unpacked\resources\app\node_modules\debug filesCount=6
+  ÔÇó identified module  dep=decompress-response from=node_modules\decompress-response to=dist\win-unpacked\resources\app\node_modules\decompress-response filesCount=3
+  ÔÇó identified module  dep=mimic-response from=node_modules\decompress-response\node_modules\mimic-response to=dist\win-unpacked\resources\app\node_modules\decompress-response\node_modules\mimic-response filesCount=3
+  ÔÇó identified module  dep=defer-to-connect from=node_modules\defer-to-connect to=dist\win-unpacked\resources\app\node_modules\defer-to-connect filesCount=3
+  ÔÇó identified module  dep=discord-rpc-patch from=node_modules\discord-rpc-patch to=dist\win-unpacked\resources\app\node_modules\discord-rpc-patch filesCount=11
+  ÔÇó identified module  dep=ejs from=node_modules\ejs to=dist\win-unpacked\resources\app\node_modules\ejs filesCount=9
+  ÔÇó identified module  dep=ejs-electron from=node_modules\ejs-electron to=dist\win-unpacked\resources\app\node_modules\ejs-electron filesCount=3
+  ÔÇó identified module  dep=electron-updater from=node_modules\electron-updater to=dist\win-unpacked\resources\app\node_modules\electron-updater filesCount=66
+  ÔÇó identified module  dep=fs-extra from=node_modules\electron-updater\node_modules\fs-extra to=dist\win-unpacked\resources\app\node_modules\electron-updater\node_modules\fs-extra filesCount=30
+  ÔÇó identified module  dep=enabled from=node_modules\enabled to=dist\win-unpacked\resources\app\node_modules\enabled filesCount=4
+  ÔÇó identified module  dep=end-of-stream from=node_modules\end-of-stream to=dist\win-unpacked\resources\app\node_modules\end-of-stream filesCount=3
+  ÔÇó identified module  dep=events-universal from=node_modules\events-universal to=dist\win-unpacked\resources\app\node_modules\events-universal filesCount=6
+  ÔÇó identified module  dep=fast-fifo from=node_modules\fast-fifo to=dist\win-unpacked\resources\app\node_modules\fast-fifo filesCount=4
+  ÔÇó identified module  dep=fastq from=node_modules\fastq to=dist\win-unpacked\resources\app\node_modules\fastq filesCount=8
+  ÔÇó identified module  dep=fecha from=node_modules\fecha to=dist\win-unpacked\resources\app\node_modules\fecha filesCount=9
+  ÔÇó identified module  dep=filelist from=node_modules\filelist to=dist\win-unpacked\resources\app\node_modules\filelist filesCount=3
+  ÔÇó identified module  dep=fn.name from=node_modules\fn.name to=dist\win-unpacked\resources\app\node_modules\fn.name filesCount=4
+  ÔÇó identified module  dep=fs-extra from=node_modules\fs-extra to=dist\win-unpacked\resources\app\node_modules\fs-extra filesCount=31
+  ÔÇó identified module  dep=get-stream from=node_modules\get-stream to=dist\win-unpacked\resources\app\node_modules\get-stream filesCount=4
+  ÔÇó identified module  dep=github-syntax-dark from=node_modules\github-syntax-dark to=dist\win-unpacked\resources\app\node_modules\github-syntax-dark filesCount=5
+  ÔÇó identified module  dep=got from=node_modules\got to=dist\win-unpacked\resources\app\node_modules\got filesCount=25
+  ÔÇó identified module  dep=graceful-fs from=node_modules\graceful-fs to=dist\win-unpacked\resources\app\node_modules\graceful-fs filesCount=6
+  ÔÇó identified module  dep=helios-core from=node_modules\helios-core to=dist\win-unpacked\resources\app\node_modules\helios-core filesCount=36
+  ÔÇó identified module  dep=helios-distribution-types from=node_modules\helios-distribution-types to=dist\win-unpacked\resources\app\node_modules\helios-distribution-types filesCount=10
+  ÔÇó identified module  dep=http-cache-semantics from=node_modules\http-cache-semantics to=dist\win-unpacked\resources\app\node_modules\http-cache-semantics filesCount=3
+  ÔÇó identified module  dep=http2-wrapper from=node_modules\http2-wrapper to=dist\win-unpacked\resources\app\node_modules\http2-wrapper filesCount=12
+  ÔÇó identified module  dep=inherits from=node_modules\inherits to=dist\win-unpacked\resources\app\node_modules\inherits filesCount=4
+  ÔÇó identified module  dep=is-stream from=node_modules\is-stream to=dist\win-unpacked\resources\app\node_modules\is-stream filesCount=3
+  ÔÇó identified module  dep=jake from=node_modules\jake to=dist\win-unpacked\resources\app\node_modules\jake filesCount=23
+  ÔÇó identified module  dep=jquery from=node_modules\jquery to=dist\win-unpacked\resources\app\node_modules\jquery filesCount=124
+  ÔÇó identified module  dep=js-yaml from=node_modules\js-yaml to=dist\win-unpacked\resources\app\node_modules\js-yaml filesCount=31
+  ÔÇó identified module  dep=json-buffer from=node_modules\json-buffer to=dist\win-unpacked\resources\app\node_modules\json-buffer filesCount=3
+  ÔÇó identified module  dep=jsonfile from=node_modules\jsonfile to=dist\win-unpacked\resources\app\node_modules\jsonfile filesCount=4
+  ÔÇó identified module  dep=keyv from=node_modules\keyv to=dist\win-unpacked\resources\app\node_modules\keyv filesCount=2
+  ÔÇó identified module  dep=kuler from=node_modules\kuler to=dist\win-unpacked\resources\app\node_modules\kuler filesCount=4
+  ÔÇó identified module  dep=lazy-val from=node_modules\lazy-val to=dist\win-unpacked\resources\app\node_modules\lazy-val filesCount=3
+  ÔÇó identified module  dep=lodash.escaperegexp from=node_modules\lodash.escaperegexp to=dist\win-unpacked\resources\app\node_modules\lodash.escaperegexp filesCount=3
+  ÔÇó identified module  dep=lodash.isequal from=node_modules\lodash.isequal to=dist\win-unpacked\resources\app\node_modules\lodash.isequal filesCount=3
+  ÔÇó identified module  dep=lodash.merge from=node_modules\lodash.merge to=dist\win-unpacked\resources\app\node_modules\lodash.merge filesCount=3
+  ÔÇó identified module  dep=logform from=node_modules\logform to=dist\win-unpacked\resources\app\node_modules\logform filesCount=46
+  ÔÇó identified module  dep=lowercase-keys from=node_modules\lowercase-keys to=dist\win-unpacked\resources\app\node_modules\lowercase-keys filesCount=3
+  ÔÇó identified module  dep=luxon from=node_modules\luxon to=dist\win-unpacked\resources\app\node_modules\luxon filesCount=39
+  ÔÇó identified module  dep=mime from=node_modules\mime to=dist\win-unpacked\resources\app\node_modules\mime filesCount=8
+  ÔÇó identified module  dep=mimic-response from=node_modules\mimic-response to=dist\win-unpacked\resources\app\node_modules\mimic-response filesCount=3
+  ÔÇó identified module  dep=minimatch from=node_modules\filelist\node_modules\minimatch to=dist\win-unpacked\resources\app\node_modules\minimatch filesCount=4
+  ÔÇó identified module  dep=ms from=node_modules\ms to=dist\win-unpacked\resources\app\node_modules\ms filesCount=3
+  ÔÇó identified module  dep=node-fetch from=node_modules\node-fetch to=dist\win-unpacked\resources\app\node_modules\node-fetch filesCount=6
+  ÔÇó identified module  dep=node-stream-zip from=node_modules\node-stream-zip to=dist\win-unpacked\resources\app\node_modules\node-stream-zip filesCount=3
+  ÔÇó identified module  dep=normalize-url from=node_modules\normalize-url to=dist\win-unpacked\resources\app\node_modules\normalize-url filesCount=3
+  ÔÇó identified module  dep=once from=node_modules\once to=dist\win-unpacked\resources\app\node_modules\once filesCount=3
+  ÔÇó identified module  dep=one-time from=node_modules\one-time to=dist\win-unpacked\resources\app\node_modules\one-time filesCount=4
+  ÔÇó identified module  dep=p-cancelable from=node_modules\p-cancelable to=dist\win-unpacked\resources\app\node_modules\p-cancelable filesCount=3
+  ÔÇó identified module  dep=picocolors from=node_modules\picocolors to=dist\win-unpacked\resources\app\node_modules\picocolors filesCount=4
+  ÔÇó identified module  dep=pump from=node_modules\pump to=dist\win-unpacked\resources\app\node_modules\pump filesCount=6
+  ÔÇó identified module  dep=quick-lru from=node_modules\quick-lru to=dist\win-unpacked\resources\app\node_modules\quick-lru filesCount=3
+  ÔÇó identified module  dep=readable-stream from=node_modules\readable-stream to=dist\win-unpacked\resources\app\node_modules\readable-stream filesCount=24
+  ÔÇó identified module  dep=resolve-alpn from=node_modules\resolve-alpn to=dist\win-unpacked\resources\app\node_modules\resolve-alpn filesCount=3
+  ÔÇó identified module  dep=responselike from=node_modules\responselike to=dist\win-unpacked\resources\app\node_modules\responselike filesCount=3
+  ÔÇó identified module  dep=reusify from=node_modules\reusify to=dist\win-unpacked\resources\app\node_modules\reusify filesCount=10
+  ÔÇó identified module  dep=safe-buffer from=node_modules\safe-buffer to=dist\win-unpacked\resources\app\node_modules\safe-buffer filesCount=3
+  ÔÇó identified module  dep=safe-stable-stringify from=node_modules\safe-stable-stringify to=dist\win-unpacked\resources\app\node_modules\safe-stable-stringify filesCount=5
+  ÔÇó identified module  dep=sax from=node_modules\sax to=dist\win-unpacked\resources\app\node_modules\sax filesCount=3
+  ÔÇó identified module  dep=semver from=node_modules\semver to=dist\win-unpacked\resources\app\node_modules\semver filesCount=51
+  ÔÇó identified module  dep=stack-trace from=node_modules\stack-trace to=dist\win-unpacked\resources\app\node_modules\stack-trace filesCount=4
+  ÔÇó identified module  dep=streamx from=node_modules\streamx to=dist\win-unpacked\resources\app\node_modules\streamx filesCount=3
+  ÔÇó identified module  dep=string_decoder from=node_modules\string_decoder to=dist\win-unpacked\resources\app\node_modules\string_decoder filesCount=3
+  ÔÇó identified module  dep=tar-fs from=node_modules\tar-fs to=dist\win-unpacked\resources\app\node_modules\tar-fs filesCount=3
+  ÔÇó identified module  dep=tar-stream from=node_modules\tar-stream to=dist\win-unpacked\resources\app\node_modules\tar-stream filesCount=7
+  ÔÇó identified module  dep=text-decoder from=node_modules\text-decoder to=dist\win-unpacked\resources\app\node_modules\text-decoder filesCount=6
+  ÔÇó identified module  dep=text-hex from=node_modules\text-hex to=dist\win-unpacked\resources\app\node_modules\text-hex filesCount=4
+  ÔÇó identified module  dep=tiny-typed-emitter from=node_modules\tiny-typed-emitter to=dist\win-unpacked\resources\app\node_modules\tiny-typed-emitter filesCount=3
+  ÔÇó identified module  dep=toml from=node_modules\toml to=dist\win-unpacked\resources\app\node_modules\toml filesCount=7
+  ÔÇó identified module  dep=tr46 from=node_modules\tr46 to=dist\win-unpacked\resources\app\node_modules\tr46 filesCount=3
+  ÔÇó identified module  dep=triple-beam from=node_modules\triple-beam to=dist\win-unpacked\resources\app\node_modules\triple-beam filesCount=7
+  ÔÇó identified module  dep=undici-types from=node_modules\undici-types to=dist\win-unpacked\resources\app\node_modules\undici-types filesCount=2
+  ÔÇó identified module  dep=universalify from=node_modules\universalify to=dist\win-unpacked\resources\app\node_modules\universalify filesCount=3
+  ÔÇó identified module  dep=util-deprecate from=node_modules\util-deprecate to=dist\win-unpacked\resources\app\node_modules\util-deprecate filesCount=5
+  ÔÇó identified module  dep=webidl-conversions from=node_modules\webidl-conversions to=dist\win-unpacked\resources\app\node_modules\webidl-conversions filesCount=3
+  ÔÇó identified module  dep=whatwg-url from=node_modules\whatwg-url to=dist\win-unpacked\resources\app\node_modules\whatwg-url filesCount=7
+  ÔÇó identified module  dep=winreg from=node_modules\winreg to=dist\win-unpacked\resources\app\node_modules\winreg filesCount=4
+  ÔÇó identified module  dep=winston from=node_modules\winston to=dist\win-unpacked\resources\app\node_modules\winston filesCount=36
+  ÔÇó identified module  dep=winston-transport from=node_modules\winston-transport to=dist\win-unpacked\resources\app\node_modules\winston-transport filesCount=9
+  ÔÇó identified module  dep=wrappy from=node_modules\wrappy to=dist\win-unpacked\resources\app\node_modules\wrappy filesCount=3
+  ÔÇó identified module  dep=ws from=node_modules\ws to=dist\win-unpacked\resources\app\node_modules\ws filesCount=16
+  ÔÇó updating asar integrity executable resource  executablePath=dist\win-unpacked\PotoGames Launcher.exe
+  ÔÇó copying files using pattern  matcher=from: D:\Devs\Minecraft\PotoGames Launcher\Helios, to: D:\Devs\Minecraft\PotoGames Launcher\Helios\dist\win-unpacked\resources, patterns: libraries
+  ÔÇó copying         src=D:\Devs\Minecraft\PotoGames Launcher\Helios destination=D:\Devs\Minecraft\PotoGames Launcher\Helios\dist\win-unpacked\resources
+  ÔÇó spawning        command=D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\app-builder-bin\win\x64\app-builder.exe icon --format ico --root D:\Devs\Minecraft\PotoGames Launcher\Helios\build --root D:\Devs\Minecraft\PotoGames Launcher\Helios --out D:\Devs\Minecraft\PotoGames Launcher\Helios\dist\.icon-ico
+  ÔÇó path resolved   path=D:\Devs\Minecraft\PotoGames Launcher\Helios\build\icon.ico outputFormat=ico
+  ÔÇó exited          command=app-builder.exe code=0 pid=25328 out={"icons":[{"file":"D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\build\\icon.ico","size":256}],"isFallback":false}
+  ÔÇó spawning        command=D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\app-builder-bin\win\x64\app-builder.exe rcedit --args ["D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\dist\\win-unpacked\\PotoGames Launcher.exe","--set-version-string","FileDescription","PotoGames Launcher","--set-version-string","ProductName","PotoGames Launcher","--set-version-string","LegalCopyright","Copyright ┬® 2026 PotoGames","--set-file-version","2.3.0","--set-p f470bd511293e497860afe6bcb1a3828b947ce0b0cb54e7f2a4f5892e637ff8a (sha256 hash) (sha256 hash) Launcher","--set-version-string","OriginalFilename","","--set-version-string","CompanyName","PotoGames","--set-icon","D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\build\\icon.ico"]
+  ÔÇó computing effective URL  initialUrl=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z
+                             currentUrl=https://release-assets.githubusercontent.com/github-production-release-asset/65527128/f73f2200-5d53-11ea-8264-ddd345f11ee4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-04-08T21%3A09%3A23Z&rscd=attachment%3B+filename%3DwinCodeSign-2.6.0.7z&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-04-08T20%3A08%3A53Z&ske=2026-04-08T21%3A09%3A23Z&sks=b&skv=2018-11-09&sig=Dwqm0ETcCIOk4jmfpfHv6dmO%2Bap31DjP5Qo%2BwAuOY5I%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc3NTY3OTU0MiwibmJmIjoxNzc1Njc5MjQyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.6fChMjLY6WjVgRt4LcGj1LVD_NiuZb3HyZLvGrRw03E&response-content-disposition=attachment%3B%20filename%3DwinCodeSign-2.6.0.7z&response-content-type=application%2Foctet-stream
+  ÔÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z length=5635384 contentType=application/octet-stream
+  ÔÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z size=5.6 MB parts=1
+  ÔÇó map async       taskCount=1
+  ÔÇó download part   range=bytes=0-5635383 index=0
+  ÔÇó downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z duration=405ms
+  ÔÇó execute command  command='D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'd:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\575880659.7z' '-od:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\575880659'
+                     workingDirectory=d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign
+  Ô¿» cannot execute  cause=exit status 2
+                    out=
+    7-Zip (a) 21.07 (x64) : Copyright (c) 1999-2021 Igor Pavlov : 2021-12-26
+    
+    Scanning the drive for archives:
+    1 file, 5635384 bytes (5504 KiB)
+    
+    Extracting archive: d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\575880659.7z
+    --
+    Path = d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\575880659.7z
+    Type = 7z
+    Physical Size = 5635384
+    Headers Size = 1492
+    Method = LZMA2:24m LZMA:20 BCJ2
+    Solid = +
+    Blocks = 2
+    
+    
+    Sub items Errors: 2
+    
+    Archives with Errors: 1
+    
+    Sub items Errors: 2
+    
+                    errorOut=ERROR: Cannot create symbolic link : Le client ne dispose pas d'un privilège nécessaire. : d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\575880659\darwin\10.12\lib\libcrypto.dylib
+    ERROR: Cannot create symbolic link : Le client ne dispose pas d'un privilège nécessaire. : d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\575880659\darwin\10.12\lib\libssl.dylib
+    
+                    command='D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'd:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\575880659.7z' '-od:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\575880659'
+                    workingDir=d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign
+  ÔÇó exited          command=app-builder.exe code=2 pid=37360
+  ÔÇó spawning        command=D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\app-builder-bin\win\x64\app-builder.exe rcedit --args ["D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\dist\\win-unpacked\\PotoGames Launcher.exe","--set-version-string","FileDescription","PotoGames Launcher","--set-version-string","ProductName","PotoGames Launcher","--set-version-string","LegalCopyright","Copyright ┬® 2026 PotoGames","--set-file-version","2.3.0","--set-p f470bd511293e497860afe6bcb1a3828b947ce0b0cb54e7f2a4f5892e637ff8a (sha256 hash) (sha256 hash) Launcher","--set-version-string","OriginalFilename","","--set-version-string","CompanyName","PotoGames","--set-icon","D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\build\\icon.ico"]
+  ÔÇó computing effective URL  initialUrl=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z
+                             currentUrl=https://release-assets.githubusercontent.com/github-production-release-asset/65527128/f73f2200-5d53-11ea-8264-ddd345f11ee4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-04-08T21%3A09%3A23Z&rscd=attachment%3B+filename%3DwinCodeSign-2.6.0.7z&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-04-08T20%3A08%3A53Z&ske=2026-04-08T21%3A09%3A23Z&sks=b&skv=2018-11-09&sig=Dwqm0ETcCIOk4jmfpfHv6dmO%2Bap31DjP5Qo%2BwAuOY5I%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc3NTY3OTU0MiwibmJmIjoxNzc1Njc5MjQyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.6fChMjLY6WjVgRt4LcGj1LVD_NiuZb3HyZLvGrRw03E&response-content-disposition=attachment%3B%20filename%3DwinCodeSign-2.6.0.7z&response-content-type=application%2Foctet-stream
+  ÔÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z length=5635384 contentType=application/octet-stream
+  ÔÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z size=5.6 MB parts=1
+  ÔÇó map async       taskCount=1
+  ÔÇó download part   range=bytes=0-5635383 index=0
+  ÔÇó downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z duration=364ms
+  ÔÇó execute command  command='D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'd:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\204990979.7z' '-od:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\204990979'
+                     workingDirectory=d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign
+  Ô¿» cannot execute  cause=exit status 2
+                    out=
+    7-Zip (a) 21.07 (x64) : Copyright (c) 1999-2021 Igor Pavlov : 2021-12-26
+    
+    Scanning the drive for archives:
+    1 file, 5635384 bytes (5504 KiB)
+    
+    Extracting archive: d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\204990979.7z
+    --
+    Path = d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\204990979.7z
+    Type = 7z
+    Physical Size = 5635384
+    Headers Size = 1492
+    Method = LZMA2:24m LZMA:20 BCJ2
+    Solid = +
+    Blocks = 2
+    
+    
+    Sub items Errors: 2
+    
+    Archives with Errors: 1
+    
+    Sub items Errors: 2
+    
+                    errorOut=ERROR: Cannot create symbolic link : Le client ne dispose pas d'un privilège nécessaire. : d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\204990979\darwin\10.12\lib\libcrypto.dylib
+    ERROR: Cannot create symbolic link : Le client ne dispose pas d'un privilège nécessaire. : d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\204990979\darwin\10.12\lib\libssl.dylib
+    
+                    command='D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'd:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\204990979.7z' '-od:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\204990979'
+                    workingDir=d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign
+  ÔÇó exited          command=app-builder.exe code=2 pid=36876
+  ÔÇó spawning        command=D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\app-builder-bin\win\x64\app-builder.exe rcedit --args ["D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\dist\\win-unpacked\\PotoGames Launcher.exe","--set-version-string","FileDescription","PotoGames Launcher","--set-version-string","ProductName","PotoGames Launcher","--set-version-string","LegalCopyright","Copyright ┬® 2026 PotoGames","--set-file-version","2.3.0","--set-p f470bd511293e497860afe6bcb1a3828b947ce0b0cb54e7f2a4f5892e637ff8a (sha256 hash) (sha256 hash) Launcher","--set-version-string","OriginalFilename","","--set-version-string","CompanyName","PotoGames","--set-icon","D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\build\\icon.ico"]
+  ÔÇó computing effective URL  initialUrl=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z
+                             currentUrl=https://release-assets.githubusercontent.com/github-production-release-asset/65527128/f73f2200-5d53-11ea-8264-ddd345f11ee4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-04-08T21%3A09%3A23Z&rscd=attachment%3B+filename%3DwinCodeSign-2.6.0.7z&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-04-08T20%3A08%3A53Z&ske=2026-04-08T21%3A09%3A23Z&sks=b&skv=2018-11-09&sig=Dwqm0ETcCIOk4jmfpfHv6dmO%2Bap31DjP5Qo%2BwAuOY5I%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc3NTY3OTU0MiwibmJmIjoxNzc1Njc5MjQyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.6fChMjLY6WjVgRt4LcGj1LVD_NiuZb3HyZLvGrRw03E&response-content-disposition=attachment%3B%20filename%3DwinCodeSign-2.6.0.7z&response-content-type=application%2Foctet-stream
+  ÔÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z length=5635384 contentType=application/octet-stream
+  ÔÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z size=5.6 MB parts=1
+  ÔÇó map async       taskCount=1
+  ÔÇó download part   range=bytes=0-5635383 index=0
+  ÔÇó downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z duration=678ms
+  ÔÇó execute command  command='D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'd:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\590464439.7z' '-od:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\590464439'
+                     workingDirectory=d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign
+  Ô¿» cannot execute  cause=exit status 2
+                    out=
+    7-Zip (a) 21.07 (x64) : Copyright (c) 1999-2021 Igor Pavlov : 2021-12-26
+    
+    Scanning the drive for archives:
+    1 file, 5635384 bytes (5504 KiB)
+    
+    Extracting archive: d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\590464439.7z
+    --
+    Path = d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\590464439.7z
+    Type = 7z
+    Physical Size = 5635384
+    Headers Size = 1492
+    Method = LZMA2:24m LZMA:20 BCJ2
+    Solid = +
+    Blocks = 2
+    
+    
+    Sub items Errors: 2
+    
+    Archives with Errors: 1
+    
+    Sub items Errors: 2
+    
+                    errorOut=ERROR: Cannot create symbolic link : Le client ne dispose pas d'un privilège nécessaire. : d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\590464439\darwin\10.12\lib\libcrypto.dylib
+    ERROR: Cannot create symbolic link : Le client ne dispose pas d'un privilège nécessaire. : d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\590464439\darwin\10.12\lib\libssl.dylib
+    
+                    command='D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'd:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\590464439.7z' '-od:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\590464439'
+                    workingDir=d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign
+  ÔÇó exited          command=app-builder.exe code=2 pid=18752
+  ÔÇó spawning        command=D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\app-builder-bin\win\x64\app-builder.exe rcedit --args ["D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\dist\\win-unpacked\\PotoGames Launcher.exe","--set-version-string","FileDescription","PotoGames Launcher","--set-version-string","ProductName","PotoGames Launcher","--set-version-string","LegalCopyright","Copyright ┬® 2026 PotoGames","--set-file-version","2.3.0","--set-p f470bd511293e497860afe6bcb1a3828b947ce0b0cb54e7f2a4f5892e637ff8a (sha256 hash) (sha256 hash) Launcher","--set-version-string","OriginalFilename","","--set-version-string","CompanyName","PotoGames","--set-icon","D:\\Devs\\Minecraft\\PotoGames Launcher\\Helios\\build\\icon.ico"]
+  ÔÇó computing effective URL  initialUrl=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z
+                             currentUrl=https://release-assets.githubusercontent.com/github-production-release-asset/65527128/f73f2200-5d53-11ea-8264-ddd345f11ee4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-04-08T21%3A09%3A23Z&rscd=attachment%3B+filename%3DwinCodeSign-2.6.0.7z&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-04-08T20%3A08%3A53Z&ske=2026-04-08T21%3A09%3A23Z&sks=b&skv=2018-11-09&sig=Dwqm0ETcCIOk4jmfpfHv6dmO%2Bap31DjP5Qo%2BwAuOY5I%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc3NTY3OTU0MiwibmJmIjoxNzc1Njc5MjQyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.6fChMjLY6WjVgRt4LcGj1LVD_NiuZb3HyZLvGrRw03E&response-content-disposition=attachment%3B%20filename%3DwinCodeSign-2.6.0.7z&response-content-type=application%2Foctet-stream
+  ÔÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z length=5635384 contentType=application/octet-stream
+  ÔÇó downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z size=5.6 MB parts=1
+  ÔÇó map async       taskCount=1
+  ÔÇó download part   range=bytes=0-5635383 index=0
+  ÔÇó downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z duration=916ms
+  ÔÇó execute command  command='D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'd:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\717532715.7z' '-od:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\717532715'
+                     workingDirectory=d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign
+  Ô¿» cannot execute  cause=exit status 2
+                    out=
+    7-Zip (a) 21.07 (x64) : Copyright (c) 1999-2021 Igor Pavlov : 2021-12-26
+    
+    Scanning the drive for archives:
+    1 file, 5635384 bytes (5504 KiB)
+    
+    Extracting archive: d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\717532715.7z
+    --
+    Path = d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\717532715.7z
+    Type = 7z
+    Physical Size = 5635384
+    Headers Size = 1492
+    Method = LZMA2:24m LZMA:20 BCJ2
+    Solid = +
+    Blocks = 2
+    
+    
+    Sub items Errors: 2
+    
+    Archives with Errors: 1
+    
+    Sub items Errors: 2
+    
+                    errorOut=ERROR: Cannot create symbolic link : Le client ne dispose pas d'un privilège nécessaire. : d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\717532715\darwin\10.12\lib\libcrypto.dylib
+    ERROR: Cannot create symbolic link : Le client ne dispose pas d'un privilège nécessaire. : d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\717532715\darwin\10.12\lib\libssl.dylib
+    
+                    command='D:\Devs\Minecraft\PotoGames Launcher\Helios\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'd:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\717532715.7z' '-od:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign\717532715'
+                    workingDir=d:\Devs\Minecraft\PotoGames Launcher\Helios\.cache\winCodeSign
+  ÔÇó exited          command=app-builder.exe code=2 pid=22828
