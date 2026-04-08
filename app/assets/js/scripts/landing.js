@@ -30,6 +30,7 @@ const {
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
 const ProcessBuilder          = require('./assets/js/processbuilder')
+const AuthManager             = require('./assets/js/authmanager')
 
 // Launch Elements
 const launch_content          = document.getElementById('launch_content')
@@ -101,7 +102,29 @@ function setLaunchEnabled(val){
 // Bind launch button
 document.getElementById('launch_button').addEventListener('click', async e => {
     loggerLanding.info('Launching game..')
+    const launchBtn = e.target
+
     try {
+        // JIT Session Validation
+        const authUser = ConfigManager.getSelectedAccount()
+        if (authUser.type === 'microsoft') {
+            const isSessionValid = await AuthManager.validateSelected()
+            if (!isSessionValid) {
+                const originalText = launchBtn.innerHTML
+                launchBtn.innerHTML = 'Session expirée...'
+                launchBtn.disabled = true
+                
+                setTimeout(() => {
+                    prepareSettings().then(() => {
+                        switchView(getCurrentView(), VIEWS.settings, 500, 500, () => {
+                            settingsNavItemListener(document.getElementById('settingsNavAccount'), false)
+                        })
+                    })
+                }, 2000)
+                return
+            }
+        }
+
         setLaunchDetails(Lang.queryJS('landing.dlAsync.loadingServerInfo'))
         const distro = await DistroAPI.refreshDistributionOrFallback()
         window.onDistroRefresh(distro)
