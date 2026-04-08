@@ -4,6 +4,7 @@ const semver = require('semver')
 
 const DropinModUtil  = require('./assets/js/dropinmodutil')
 const { MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR } = require('./assets/js/ipcconstants')
+const { validateSelectedJvm, ensureJavaDirIsRoot } = require('helios-core/java')
 
 const settingsState = {
     invalid: new Set()

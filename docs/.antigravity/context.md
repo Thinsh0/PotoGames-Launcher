@@ -1,9 +1,12 @@
-# Context: Exporting the Launcher
+# Context - Bug Fixes (Helios Launcher)
 
 ## Decisions
-- [x] **2026-04-08**: Decided to build for both Windows and Linux simultaneously using `electron-builder build -wl`. This is consistent with the `dist` script in `package.json`.
-- [x] **Reasoning**: The user's request explicitly asks for both. The build is being performed on Windows, but `electron-builder` handles cross-platform compilation (or at least packaging for Linux via node-based tools).
-- [ ] **Architecture**: The application is an Electron-based Minecraft launcher, using `helios-core` and `ejs` for templating.
 
-## Breaking Changes
-- N/A - This is a production build step only.
+- **AuthManager fix**: Using `window.AuthManager` to avoid `SyntaxError` when the script is loaded multiple times. This is common in Electron apps if `landing.js` is re-executed or included via multiple paths.
+- **validateSelectedJvm import**: This function resides in `helios-core/dist/java/JavaGuard`. I will import it from `helios-core` if possible or the specific sub-module.
+- **EPERM handling**: Using `try...catch` is the safest way to handle Windows file locks without halting the entire preloading process.
+
+## Architecture Notes
+
+- The launcher uses a classic Helios architecture (Electron).
+- Frontend scripts use `require` which implies `nodeIntegration: true`.

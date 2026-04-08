@@ -58,10 +58,22 @@ DistroAPI.getDistribution()
     })
 
 // Clean up temp dir incase previous launches ended unexpectedly. 
-fs.remove(path.join(os.tmpdir(), ConfigManager.getTempNativeFolder()), (err) => {
-    if(err){
-        logger.warn('Error while cleaning natives directory', err)
+try {
+    fs.remove(path.join(os.tmpdir(), ConfigManager.getTempNativeFolder()), (err) => {
+        if(err){
+            if(err.code === 'EPERM' || err.code === 'EBUSY'){
+                console.warn('Fichier verrouillé, nettoyage ignoré')
+            } else {
+                logger.warn('Error while cleaning natives directory', err)
+            }
+        } else {
+            logger.info('Cleaned natives directory.')
+        }
+    })
+} catch (err) {
+    if(err.code === 'EPERM' || err.code === 'EBUSY'){
+        console.warn('Fichier verrouillé, nettoyage ignoré')
     } else {
-        logger.info('Cleaned natives directory.')
+        logger.warn('Error during cleaning of natives directory', err)
     }
-})
+}

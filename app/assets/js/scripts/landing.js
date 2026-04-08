@@ -30,7 +30,12 @@ const {
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
 const ProcessBuilder          = require('./assets/js/processbuilder')
-const AuthManager             = require('./assets/js/authmanager')
+
+// Patched: Avoid redeclaring AuthManager if it already exists (fixes SyntaxError)
+if (window.AuthManager === undefined) {
+    window.AuthManager = require('./assets/js/authmanager')
+}
+var AuthManager = window.AuthManager
 
 // Launch Elements
 const launch_content          = document.getElementById('launch_content')
