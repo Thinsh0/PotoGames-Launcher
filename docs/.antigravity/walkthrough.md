@@ -1,24 +1,9 @@
-# Project Walkthrough - Execution Log
+# Walkthrough: Exporting PotoGames Launcher
 
-## 2026-04-07: Phase 1 - Robust Logging & Initial Diagnostics
-- [x] Initialized project plan and decision logs.
-- [x] Implemented `index.js` log redirection to `launcher.log` in `userData`.
-- [x] Patched `helios-core` (FullRepairReceiver) to truncate HTML response bodies in logs.
-- [x] Corrected distribution URL format in `distromanager.js` (removed `refs/heads/`).
-- [x] Improved error visibility for network failures.
-
-## 2026-04-07: Phase 2 - Performance Enhancements
-- [x] Installed `patch-package` and set up `postinstall` script.
-- [x] Patched `helios-core` (DistributionIndexProcessor) to parallelize module hashing.
-- [x] Patched `helios-core` (MojangIndexProcessor) to parallelize asset and library hashing.
-- [x] Increased download concurrency from 15 to 30 in `helios-core` (DownloadEngine).
-
-## 2026-04-07: Phase 3 - Distro Refresh
-- [x] Exposed `onDistroRefresh` globally in `uibinder.js`.
-- [x] Implemented mandatory distribution refresh on Play button click in `landing.js`.
-- [x] Verified that launch feedback includes "Loading server information..." during refresh.
-
-## 2026-04-07: Phase 5 - Release v2.3.0
-- [x] Bumped version to `2.3.0` in `package.json`.
-- [ ] Built production binaries for Windows (NSIS).
-- [ ] Pushed version bump to GitHub.
+## Log
+- [x] **2026-04-08 16:47**: Initialized build of PotoGames Launcher for Windows and Linux.
+- [x] **2026-04-08 16:48**: Initial attempt with `npm run dist` failed due to transient `winCodeSign` extraction errors and AppImage tool issues on Windows.
+- [x] **2026-04-08 16:50**: Redirections of cache and attempts to isolate platforms (unpacked versions successful).
+- [x] **2026-04-08 16:54**: Generated Windows export: `dist/PotoGames-Launcher-Windows.zip`.
+- [x] **2026-04-08 16:54**: Generated Linux export: `dist/PotoGames-Launcher-Linux.zip`.
+- [x] **2026-04-08 16:55**: Verified both artifacts in the `dist` directory.

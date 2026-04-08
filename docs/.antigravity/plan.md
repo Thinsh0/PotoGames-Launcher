@@ -1,30 +1,21 @@
-# Project Plan - PotoGames Launcher Enhancements
+# Implementation Plan: Export Launcher for Windows and Linux
 
-## Phase 1: Robust Logging & Diagnostics (ACTIVE)
-- [x] Implement a custom logging mechanism in `index.js` to capture `stdout` and `stderr` to a `launcher.log` file in the application data directory.
-- [x] Add logic to truncate or filter large HTML/XML responses from logs to prevent "log pollution" during 404/500 errors.
-- [x] Analyze the clean logs to identify the cause of intermittent launcher failures (likely the `refs/heads/` URL issues).
+## Goals
+- [x] Build the application for Windows (unpacked exe).
+- [x] Build the application for Linux (unpacked x64).
+- [x] Ensure binaries are correctly placed and packaged in the `dist` directory.
 
-## Phase 2: Performance Optimization (Hachage & Téléchargements)
-- [x] Install `patch-package` and configure `postinstall` script.
-- [x] **Parallel Hashing**: Patch `helios-core`'s `DistributionIndexProcessor` and `MojangIndexProcessor` to use `Promise.all` or a worker pool for file verification.
-- [x] **Parallel Downloads**: Increase the default concurrency (15) in `helios-core`'s `DownloadEngine` if needed, or make it configurable.
+## Tasks
 
-## Phase 3: Distribution Refresh Mechanism
-- [x] Modify the "Play" button handler in `landing.js` to perform a forced distribution refresh (ignoring local cache) before each launch attempt.
-- [x] Ensure UI feedback during this refresh (e.g., "Checking for updates...").
+### 1. Build Process
+- [x] Execute `npm run dist` (successfully generated unpacked directories).
+- [x] Encountered issues with automated NSIS/AppImage packaging on this environment.
+- [x] Implemented manual 7za packaging fallback for both platforms.
 
-## Phase 4: Auto-Update Verification
-- [ ] Verify that the previously implemented update system works with the new repository (`Thinsh0/PotoGames-Launcher`).
-- [ ] Test the update flow in a local dev environment using `dev-app-update.yml`.
+### 2. Output Verification
+- [x] Check `dist/` folder for Windows artifacts: `PotoGames-Launcher-Windows.zip`.
+- [x] Check `dist/` folder for Linux artifacts: `PotoGames-Launcher-Linux.zip`.
 
-## Phase 5: Release (ACTIVE)
-- [x] Bump version to 2.3.0 in `package.json`.
-- [ ] Build production assets (Windows NSIS).
-- [ ] Push changes to GitHub and confirm deployment.
-
----
-## Completed Tasks
-- [x] Repository URL migration in `package.json` and `electron-builder.yml`.
-- [x] Integration of update notifications in `uicore.js`.
-- [x] Core update logic in `index.js`.
+## Verification
+- [x] Verify file sizes are correct (~144 MiB for Windows, ~122 MiB for Linux).
+- [x] Confirm the presence of internal binaries (`PotoGames Launcher.exe` and `potogames-launcher`).
