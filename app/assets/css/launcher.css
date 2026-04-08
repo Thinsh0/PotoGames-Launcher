@@ -81,6 +81,19 @@ body::after {
     border-radius: 24px;
 }
 
+#landing_logo_container {
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+#landing_logo {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0px 0px 15px rgba(255, 140, 46, 0.3));
+    user-select: none;
+    pointer-events: none;
+}
+
 /*body {
     background: url('./../images/backgrounds/0.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -132,6 +145,16 @@ body::after {
     justify-content: space-between;
     width: 100%;
     -webkit-app-region: drag;
+}
+
+#frameLogo {
+    height: 12px;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 8px;
+    align-self: center;
+    user-select: none;
+    pointer-events: none;
 }
 
 /* Main frame content for darwin. */

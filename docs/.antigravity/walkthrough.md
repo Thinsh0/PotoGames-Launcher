@@ -7,3 +7,7 @@
 - [x] **2026-04-08 16:54**: Generated Windows export: `dist/PotoGames-Launcher-Windows.zip`.
 - [x] **2026-04-08 16:54**: Generated Linux export: `dist/PotoGames-Launcher-Linux.zip`.
 - [x] **2026-04-08 16:55**: Verified both artifacts in the `dist` directory.
+- [x] **2026-04-08 17:05**: Diagnosed missing logo issue; found `landing.ejs` was missing the primary logo element.
+- [x] **2026-04-08 17:08**: Restored logo to `landing.ejs` and added branding to `frame.ejs`.
+- [x] **2026-04-08 17:10**: Implemented new CSS rules in `launcher.css` for the restored logo elements.
+- [x] **2026-04-08 17:12**: Verified and standardized logo references across all application views.

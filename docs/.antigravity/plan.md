@@ -1,21 +1,25 @@
-# Implementation Plan: Export Launcher for Windows and Linux
+# Implementation Plan: Restoring Application Logo Assets
 
 ## Goals
-- [x] Build the application for Windows (unpacked exe).
-- [x] Build the application for Linux (unpacked x64).
-- [x] Ensure binaries are correctly placed and packaged in the `dist` directory.
+- [x] Identify missing logo references in the UI.
+- [x] Restore logo presence on the landing page.
+- [x] Add logo to the window title bar for better branding.
+- [x] Verify paths and CSS visibility for all logo instances.
 
 ## Tasks
 
-### 1. Build Process
-- [x] Execute `npm run dist` (successfully generated unpacked directories).
-- [x] Encountered issues with automated NSIS/AppImage packaging on this environment.
-- [x] Implemented manual 7za packaging fallback for both platforms.
+### 1. Diagnosis
+- [x] Scanned EJS views for logo references.
+- [x] Identified that `landing.ejs` was missing the logo element entirely.
+- [x] Verified `app.assets.images` contains `logo.png` and `logo_small.png`.
 
-### 2. Output Verification
-- [x] Check `dist/` folder for Windows artifacts: `PotoGames-Launcher-Windows.zip`.
-- [x] Check `dist/` folder for Linux artifacts: `PotoGames-Launcher-Linux.zip`.
+### 2. Implementation
+- [x] Updated `app/landing.ejs` to include `#landing_logo_container`.
+- [x] Updated `app/frame.ejs` to include `#frameLogo` in the title bar.
+- [x] Added CSS rules for new logo elements in `app/assets/css/launcher.css`.
+- [x] Verified existing references in `app.ejs`, `welcome.ejs`, and `login.ejs`.
 
 ## Verification
-- [x] Verify file sizes are correct (~144 MiB for Windows, ~122 MiB for Linux).
-- [x] Confirm the presence of internal binaries (`PotoGames Launcher.exe` and `potogames-launcher`).
+- [ ] Visual verification of logo on Startup (app.ejs).
+- [ ] Visual verification of logo on Landing Page (landing.ejs).
+- [ ] Visual verification of logo in Frame (frame.ejs).
