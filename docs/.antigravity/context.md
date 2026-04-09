@@ -1,8 +1,8 @@
-# Context: Version 2.4.0 Release for Auto-Update Testing
+# Context: Version 2.4.1 Release (Critical Installer Fix)
 
 ## Decisions
-- **Version Choice**: The user requested "version 2.4". Following SemVer standards used in the project (2.3.0), I am promoting it to `2.4.0`.
-- **Scope**: STRICTly limited to version bump. `helios-core` and other dependencies are left untouched as per "on ne modifie rien d'autre".
+- **Version bump to 2.4.1**: Following 2.4.0, this version targets the "write error" bug fix as requested.
+- **Installer robustification**: Implemented Unicode and forced Admin rights via `perMachine: true`.
 - **Build Target**: Windows (`dist:win`) as it's the current environment and primary test case for the user.
 
 ## Technical Trade-offs

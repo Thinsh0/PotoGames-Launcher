@@ -1,9 +1,9 @@
-# Plan: Fix Installer Write Errors and Update to Version 2.4.0
+# Plan: Release Version 2.4.1 (Installer Fixes)
 
-The objective is to resolve "write errors" reported by some users during installation and ensure the launcher is updated to version 2.4.0.
+The objective is to release version 2.4.1 which addresses the "write errors" reported by some users.
 
 ## Tasks
-- [x] Update `package.json` version from `2.3.0` to `2.4.0`.
+- [x] Update `package.json` version from `2.4.0` to `2.4.1`.
 - [x] Update `electron-builder.yml` with robust NSIS settings:
     - [x] Enable `unicode: true` (fix special characters in paths).
     - [x] Set `perMachine: true` (force admin rights to avoid folder permission issues).
