@@ -13,10 +13,10 @@
   "main": "index.js",
   "scripts": {
     "start": "electron . --no-sandbox",
-    "dist": "electron-builder build -wl",
-    "dist:win": "npm run dist -- -w",
-    "dist:mac": "npm run dist -- -m",
-    "dist:linux": "npm run dist -- -l",
+    "dist": "electron-builder build",
+    "dist:win": "npm run dist -- --win",
+    "dist:mac": "npm run dist -- --mac",
+    "dist:linux": "npm run dist -- --linux",
     "lint": "eslint .",
     "postinstall": "patch-package"
   },
