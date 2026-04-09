@@ -1,5 +1,5 @@
 appId: 'potogameslauncher'
-productName: 'PotoLauncher'
+productName: 'PotoGames Launcher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
 publish:
@@ -28,9 +28,10 @@ win:
 # Windows Installer Configuration
 nsis:
   oneClick: false
-  perMachine: false
+  perMachine: true
   allowElevation: true
   allowToChangeInstallationDirectory: true
+  unicode: true
 
 # macOS Configuration
 mac:
