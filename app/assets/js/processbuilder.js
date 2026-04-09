@@ -53,7 +53,84 @@ class ProcessBuilder {
         this.usingFabricLoader = this.server.modules.some(mdl => mdl.rawModule.type === Type.Fabric)
         logger.info('Using fabric loader:', this.usingFabricLoader)
         const modObj = this.resolveModConfiguration(ConfigManager.getModConfiguration(this.server.rawServer.id).mods, this.server.modules)
-        
+
+        // --- SMART PHYSICALIZATION (Sinytra Compatibility) ---
+        const modsFolder = path.join(this.gameDir, 'mods')
+        const managedModsTracker = path.join(this.gameDir, '.managed_mods.json')
+        const requiresPhysicalMods = modObj.fMods.some(mod => mod.rawModule && (
+            (mod.rawModule.id && mod.rawModule.id.includes('connector')) || 
+            (mod.rawModule.name && mod.rawModule.name.toLowerCase().includes('connector'))
+        ))
+
+        if (requiresPhysicalMods) {
+            logger.info('Sinytra Connector detected. Switching to Physical Mod Loading..')
+            fs.ensureDirSync(modsFolder)
+
+            // 1. SMART CLEANUP (State-Tracked)
+            if (fs.existsSync(managedModsTracker)) {
+                try {
+                    const previouslyManaged = fs.readJsonSync(managedModsTracker)
+                    if (Array.isArray(previouslyManaged)) {
+                        logger.info(`Cleaning up ${previouslyManaged.length} previously managed mods..`)
+                        for (const filename of previouslyManaged) {
+                            const targetFile = path.join(modsFolder, filename)
+                            if (fs.existsSync(targetFile)) {
+                                fs.unlinkSync(targetFile)
+                            }
+                        }
+                    }
+                } catch (err) {
+                    logger.error('Error during managed mods cleanup:', err)
+                }
+            }
+
+            // 2. HYBRID PHYSICALIZATION (Hardlink with Fallback)
+            const currentlyManaged = []
+            const distributionMods = []
+            const dropInMods = []
+
+            for (const mod of modObj.fMods) {
+                if (mod.rawModule) {
+                    distributionMods.push(mod)
+                } else {
+                    dropInMods.push(mod)
+                }
+            }
+
+            for (const mod of distributionMods) {
+                const srcPath = mod.getPath()
+                const filename = path.basename(srcPath)
+                const destPath = path.join(modsFolder, filename)
+
+                try {
+                    if (!fs.existsSync(destPath)) {
+                        try {
+                            fs.linkSync(srcPath, destPath)
+                            logger.info(`Physicalized (Hardlink): ${filename}`)
+                        } catch (err) {
+                            if (err.code === 'EXDEV') {
+                                fs.copyFileSync(srcPath, destPath)
+                                logger.info(`Physicalized (Copy): ${filename}`)
+                            } else {
+                                throw err
+                            }
+                        }
+                    }
+                    currentlyManaged.push(filename)
+                } catch (err) {
+                    logger.error(`Failed to physicalize mod ${filename}:`, err)
+                }
+            }
+
+            // 3. SAVE STATE
+            fs.writeJsonSync(managedModsTracker, currentlyManaged)
+
+            // 4. Update mod lists to only contain drop-ins (if any) or be empty
+            // Since they are now physical, we don't need to pass them via forgeMods.list
+            modObj.fMods = dropInMods
+        }
+        // --- END SMART PHYSICALIZATION ---
+
         // Mod list below 1.13
         // Fabric only supports 1.14+
         if(!mcVersionAtLeast('1.13', this.server.rawServer.minecraftVersion)){
@@ -67,8 +144,9 @@ class ProcessBuilder {
         let args = this.constructJVMArguments(uberModArr, tempNativePath)
 
         if(mcVersionAtLeast('1.13', this.server.rawServer.minecraftVersion)){
-            //args = args.concat(this.constructModArguments(modObj.fMods))
-            args = args.concat(this.constructModList(modObj.fMods))
+            if (!requiresPhysicalMods || modObj.fMods.length > 0) {
+                args = args.concat(this.constructModList(modObj.fMods))
+            }
         }
 
         // Hide access token

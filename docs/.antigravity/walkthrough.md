@@ -1,9 +1,4 @@
-# Walkthrough - Bug Fixes (Helios Launcher)
+# Walkthrough: Version 2.4.0 Release
 
 ## Log
-
-- **2026-04-09**: Initialized documentation and started codebase exploration. Identified `AuthManager` issue in `landing.js` and missing import in `settings.js`.
-- **2026-04-09**: Fixed Task 1 (AuthManager) by using safe window-based import.
-- **2026-04-09**: Fixed Task 2 (Missing import) by adding `validateSelectedJvm` to `settings.js`.
-- **2026-04-09**: Fixed Task 3 (EPERM) in `preloader.js` by adding try-catch and specific error handling.
-- **2026-04-09**: Updated documentation and finalizing.
+- **2026-04-09 17:15**: Initialized plan and context for version 2.4.0 update.

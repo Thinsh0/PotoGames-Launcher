@@ -1,12 +1,9 @@
-# Context - Bug Fixes (Helios Launcher)
+# Context: Version 2.4.0 Release for Auto-Update Testing
 
 ## Decisions
+- **Version Choice**: The user requested "version 2.4". Following SemVer standards used in the project (2.3.0), I am promoting it to `2.4.0`.
+- **Scope**: STRICTly limited to version bump. `helios-core` and other dependencies are left untouched as per "on ne modifie rien d'autre".
+- **Build Target**: Windows (`dist:win`) as it's the current environment and primary test case for the user.
 
-- **AuthManager fix**: Using `window.AuthManager` to avoid `SyntaxError` when the script is loaded multiple times. This is common in Electron apps if `landing.js` is re-executed or included via multiple paths.
-- **validateSelectedJvm import**: This function resides in `helios-core/dist/java/JavaGuard`. I will import it from `helios-core` if possible or the specific sub-module.
-- **EPERM handling**: Using `try...catch` is the safest way to handle Windows file locks without halting the entire preloading process.
-
-## Architecture Notes
-
-- The launcher uses a classic Helios architecture (Electron).
-- Frontend scripts use `require` which implies `nodeIntegration: true`.
+## Technical Trade-offs
+- No code changes means no risk of functional regression, but also no fixes for pending issues. The goal is purely infrastructure testing (auto-update).

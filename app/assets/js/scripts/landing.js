@@ -1,52 +1,18 @@
 /**
  * Script for landing.ejs
  */
-// Requirements
-const { URL }                 = require('url')
-const {
-    MojangRestAPI,
-    getServerStatus
-}                             = require('helios-core/mojang')
-const {
-    RestResponseStatus,
-    isDisplayableError,
-    validateLocalFile
-}                             = require('helios-core/common')
-const {
-    FullRepair,
-    DistributionIndexProcessor,
-    MojangIndexProcessor,
-    downloadFile
-}                             = require('helios-core/dl')
-const {
-    validateSelectedJvm,
-    ensureJavaDirIsRoot,
-    javaExecFromRoot,
-    discoverBestJvmInstallation,
-    latestOpenJDK,
-    extractJdk
-}                             = require('helios-core/java')
-
-// Internal Requirements
-const DiscordWrapper          = require('./assets/js/discordwrapper')
-const ProcessBuilder          = require('./assets/js/processbuilder')
-
-// Patched: Avoid redeclaring AuthManager if it already exists (fixes SyntaxError)
-if (window.AuthManager === undefined) {
-    window.AuthManager = require('./assets/js/authmanager')
-}
-var AuthManager = window.AuthManager
+/* global URL, MojangRestAPI, getServerStatus, RestResponseStatus, isDisplayableError, validateLocalFile, FullRepair, DistributionIndexProcessor, MojangIndexProcessor, downloadFile, validateSelectedJvm, ensureJavaDirIsRoot, javaExecFromRoot, discoverBestJvmInstallation, latestOpenJDK, extractJdk, DiscordWrapper, ProcessBuilder, AuthManager, ConfigManager */
 
 // Launch Elements
-const launch_content          = document.getElementById('launch_content')
-const launch_details          = document.getElementById('launch_details')
-const launch_progress         = document.getElementById('launch_progress')
-const launch_progress_label   = document.getElementById('launch_progress_label')
-const launch_details_text     = document.getElementById('launch_details_text')
-const server_selection_button = document.getElementById('server_selection_button')
-const user_text               = document.getElementById('player_name_footer')
+var launch_content          = document.getElementById('launch_content')
+var launch_details          = document.getElementById('launch_details')
+var launch_progress         = document.getElementById('launch_progress')
+var launch_progress_label   = document.getElementById('launch_progress_label')
+var launch_details_text     = document.getElementById('launch_details_text')
+var server_selection_button = document.getElementById('server_selection_button')
+var user_text               = document.getElementById('player_name_footer')
 
-const loggerLanding = LoggerUtil.getLogger('Landing')
+var loggerLanding = LoggerUtil.getLogger('Landing')
 
 /* Launch Progress Wrapper Functions */
 
@@ -1030,7 +996,15 @@ async function loadNews(){
     const promise = new Promise((resolve, reject) => {
         
         const newsFeed = distroData.rawDistribution.rss
-        const newsHost = new URL(newsFeed).origin + '/'
+        let newsHost
+        try {
+            newsHost = new URL(newsFeed).origin + '/'
+        } catch (e) {
+            loggerLanding.error('Invalid RSS URL provided in distribution index.', e)
+            resolve(null)
+            return
+        }
+
         $.ajax({
             url: newsFeed,
             success: (data) => {

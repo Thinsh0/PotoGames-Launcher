@@ -6,9 +6,60 @@
 const path          = require('path')
 const { Type }      = require('helios-distribution-types')
 
+const { URL }       = require('url')
 const AuthManager   = require('./assets/js/authmanager')
 const ConfigManager = require('./assets/js/configmanager')
 const { DistroAPI } = require('./assets/js/distromanager')
+const {
+    validateSelectedJvm,
+    ensureJavaDirIsRoot,
+    javaExecFromRoot,
+    discoverBestJvmInstallation,
+    latestOpenJDK,
+    extractJdk
+}                   = require('helios-core/java')
+const {
+    MojangRestAPI,
+    getServerStatus
+}                   = require('helios-core/mojang')
+const {
+    RestResponseStatus,
+    isDisplayableError,
+    validateLocalFile
+}                   = require('helios-core/common')
+const {
+    FullRepair,
+    DistributionIndexProcessor,
+    MojangIndexProcessor,
+    downloadFile
+}                   = require('helios-core/dl')
+
+// Internal Requirements
+const DiscordWrapper = require('./assets/js/discordwrapper')
+const ProcessBuilder = require('./assets/js/processbuilder')
+
+// Attach to window for cross-view accessibility
+window.URL = URL
+window.AuthManager = AuthManager
+window.ConfigManager = ConfigManager
+window.DistroAPI = DistroAPI
+window.validateSelectedJvm = validateSelectedJvm
+window.ensureJavaDirIsRoot = ensureJavaDirIsRoot
+window.javaExecFromRoot = javaExecFromRoot
+window.discoverBestJvmInstallation = discoverBestJvmInstallation
+window.latestOpenJDK = latestOpenJDK
+window.extractJdk = extractJdk
+window.MojangRestAPI = MojangRestAPI
+window.getServerStatus = getServerStatus
+window.RestResponseStatus = RestResponseStatus
+window.isDisplayableError = isDisplayableError
+window.validateLocalFile = validateLocalFile
+window.FullRepair = FullRepair
+window.DistributionIndexProcessor = DistributionIndexProcessor
+window.MojangIndexProcessor = MojangIndexProcessor
+window.downloadFile = downloadFile
+window.DiscordWrapper = DiscordWrapper
+window.ProcessBuilder = ProcessBuilder
 
 let rscShouldLoad = false
 let fatalStartupError = false
